@@ -6,14 +6,6 @@ import colors from "colors";
 const app = express();
 const port = process.env.PORT || 4000;
 
-const sequelize = new Sequelize({
-  database: 'database',
-  dialect: 'postgres',
-  username: 'username',
-  password: 'password',
-  storage: ':memory:',
-});
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
