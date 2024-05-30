@@ -62,7 +62,7 @@ class Report extends Model<Report> {
   dueDate!: string;
 
   @Column({
-    type: DataType.ENUM('low', 'middle', 'high'),
+    type: DataType.ENUM('low', 'medium', 'high'),
     allowNull: false
   })
   priority!: string;

@@ -2,7 +2,7 @@ import { body } from "express-validator";
 
 // TODO: CAMBIAR EL TIPO DE DATOS DE VISIT DATE DE STRING A DATE Y VALIDAR CON FORMATO DATE
 
-export const userValidationSchema = [
+export const reportValidationSchema = [
   //? body("visitDate").isDate().withMessage("Visit date must be a valid date"),
   body("visitDate")
     .notEmpty()
