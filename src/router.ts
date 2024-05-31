@@ -22,16 +22,16 @@ router.get(
   getReportbyId
 );
 
+router.post("/", reportValidationSchema, handleInputErros, createReport);
+
 //? verificar la validacion del post cuando se ingresan letras en el param
-router.post(
-  "/",
+router.put(
+  "/:id",
   param("id").isInt().withMessage("ID no válido"),
   reportValidationSchema,
   handleInputErros,
-  createReport
+  updateReport
 );
-
-router.put("/:id", reportValidationSchema, handleInputErros, updateReport);
 
 router.delete(
   "/:id",
