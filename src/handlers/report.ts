@@ -78,7 +78,7 @@ export const getReportbyId = async (req: Request, res: Response) => {
       include: [{ model: Workforce }, { model: Material }],
     });
     if (!report) {
-      return res.status(404).json({ data: "Reporte no encontrado" });
+      return res.status(404).json({ error: "Reporte no encontrado" });
     }
     res.status(200).json({ data: report });
   } catch (error) {
