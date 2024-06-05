@@ -1,75 +1,87 @@
-import { Table, Column, Model, DataType, HasMany, AllowNull } from "sequelize-typescript";
+import { Table, Column, Model, DataType, HasMany } from "sequelize-typescript";
 import Workforce from "./Worforce.model";
 import Material from "./Material.model";
 
-
 @Table({
   tableName: "reports",
+  schema: "public",
 })
 class Report extends Model<Report> {
   @Column({
-    type: DataType.STRING,
-    allowNull: false
+    type: DataType.DATE,
+    allowNull: false,
   })
-  visitDate!: string;
+  visitDate!: Date;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
   })
   name!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
   })
   customerName!: string;
 
   @Column({
     type: DataType.BIGINT,
-    allowNull: false
+    allowNull: true,
   })
   nit!: number;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
+  })
+  ref!: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
   })
   city!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: true,
   })
   address!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
+  })
+  contactName!: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
   })
   phoneNumber!: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false
+    allowNull: false,
   })
   email!: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: false
+    type: DataType.DATE,
+    allowNull: false,
   })
-  dueDate!: string;
+  dueDate!: Date;
 
   @Column({
-    type: DataType.ENUM('low', 'medium', 'high'),
-    allowNull: false
+    type: DataType.ENUM("low", "medium", "high"),
+    allowNull: false,
   })
   priority!: string;
 
   @Column({
     type: DataType.TEXT,
-    allowNull: false
+    allowNull: false,
   })
   description!: string;
 
@@ -77,9 +89,7 @@ class Report extends Model<Report> {
   workforce!: Workforce[];
 
   @HasMany(() => Material)
-  materials!: Material[];
-
- 
+  material!: Material[];
 }
 
-export default Report
+export default Report;

@@ -9,6 +9,7 @@ import Report from "./Report.model";
 
 @Table({
   tableName: "workforces",
+  schema: 'public' 
 })
 class Workforce extends Model<Workforce> {
   @Column({
@@ -20,7 +21,7 @@ class Workforce extends Model<Workforce> {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  workShift!: number;
+  workshift!: number;
 
   @ForeignKey(() => Report)
   @Column({ type: DataType.INTEGER, allowNull: false })
