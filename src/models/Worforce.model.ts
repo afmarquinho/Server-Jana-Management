@@ -9,7 +9,6 @@ import Report from "./Report.model";
 
 @Table({
   tableName: "workforces",
-  schema: 'public' 
 })
 class Workforce extends Model<Workforce> {
   @Column({

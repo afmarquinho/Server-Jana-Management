@@ -22,21 +22,11 @@ export const reportValidationSchema = [
     .withMessage("Ingrese un nombre del cliente válido")
     .isLength({ min: 1 })
     .withMessage("el nombre del cliente es obligatorio"),
-  body("nit")
-    .isNumeric()
-    .withMessage("NIT debe ser válido")
-    .custom((value) => value > 0)
-    .withMessage("NIT debe ser válido"),
   body("city")
     .isString()
     .withMessage("Ingrese una cuidad de Colombia válida")
     .isLength({ min: 1 })
     .withMessage("Ciudad es obligatorio"),
-  body("address")
-    .isString()
-    .withMessage("Ingrese una dirección válida")
-    .isLength({ min: 1 })
-    .withMessage("Dirección es obligatorio"),
   body("phoneNumber")
     .isString()
     .withMessage("Ingrese un teléfono válido")

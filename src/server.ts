@@ -5,6 +5,7 @@ import reportRouter from "./router";
 import db from "./config/db";
 import swaggerSpec from "./config/swagger";
 import cors, {CorsOptions} from "cors";
+import morgan from "morgan";
 
 // * CONNECT TO DATA BASE
 export const connectDB = async () => {
@@ -48,6 +49,8 @@ server.use(cors(corsOptions));
 //? READING DATA FROM FORM.
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+
+server.use(morgan('dev'))
 
 server.use("/api/report", reportRouter);
 

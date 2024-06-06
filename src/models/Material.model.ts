@@ -9,7 +9,6 @@
 
   @Table({
     tableName: "materials",
-    schema: 'public' 
   })
   class Material extends Model<Material> {
     @Column({
