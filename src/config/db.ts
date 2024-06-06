@@ -16,7 +16,11 @@ const db = new Sequelize(process.env.DATABASE_URL!, {
   },
   models: [__dirname + "/../models/**/*.ts"], //*DE ESTA MANERA SE AÑADEN TODA LA CARPETA PARA QUE AÑADA LOS MODELOS AUTOMATICAMENTE
   //* models: [Report] //* DE ESTA MANERA TENGO QUE AÑADIR CADA MODELO MANUALMENTE
+  define: {
+    schema: 'public' // Asegura que se use el esquema "public"
+  },
   logging:false
 });
+
 
 export default db;

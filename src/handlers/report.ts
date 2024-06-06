@@ -3,14 +3,12 @@ import Report from "../models/Report.model";
 import Material from "../models/Material.model";
 import Workforce from "../models/Worforce.model";
 import db from "../config/db";
-import { check, validationResult } from "express-validator";
-import { PrimaryKey } from "sequelize-typescript";
 
 //? CREATE REPORTS
 export const createReport = async (req: Request, res: Response) => {
   const transaction = await db.transaction();
 
-  const { workforce, materials, ...reportData } = req.body;
+  const { workforce, material, ...reportData } = req.body;
 
   // TODO: CAMBIAR EL TIPO DE DATOS DE VISIT DATE DE STRING A DATE Y VALIDAR CON FORMATO DATE
 
@@ -20,24 +18,21 @@ export const createReport = async (req: Request, res: Response) => {
     const newReport = await Report.create(reportData, { transaction });
 
     // ? CREATE WORKFORCE AT DB
-    if (workforce && workforce.length > 0) {
-      for (const wf of workforce) {
-        await Workforce.create(
-          { ...wf, reportID: newReport.id },
-          { transaction }
-        );
-      }
+    for (const wf of workforce) {
+      await Workforce.create(
+        { ...wf, reportID: newReport.id },
+        { transaction }
+      );
     }
 
     // ? CREATE MATERIALS ST DB
-    if (materials && materials.length > 0) {
-      for (const material of materials) {
-        await Material.create(
-          { ...material, reportID: newReport.id },
-          { transaction }
-        );
-      }
+    for (const mt of material) {
+      await Material.create(
+        { ...mt, reportID: newReport.id },
+        { transaction }
+      );
     }
+
     transaction.commit();
 
     const fullReport = await Report.findByPk(newReport.id, {
@@ -155,7 +150,11 @@ export const deleteReport = async (req: Request, res: Response) => {
     await report.destroy();
     await transaction.commit();
 
-    res.status(200).json({ message: 'Reporte, materiales y mano de Obra eliminada exitosamente' });
+    res
+      .status(200)
+      .json({
+        message: "Reporte, materiales y mano de Obra eliminada exitosamente",
+      });
   } catch (error) {
     await transaction.rollback();
     res.status(500).json({ error: error.message });
