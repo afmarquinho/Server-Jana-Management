@@ -1,113 +1,102 @@
-import { Table, Column, Model, DataType, HasMany } from "sequelize-typescript";
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  Default,
+  HasMany,
+} from "sequelize-typescript";
 import Workforce from "./Worforce.model";
 import Material from "./Material.model";
-import { defaultValueSchemable } from "sequelize/lib/utils";
 
-// TODO: REVISAR QUE LLENE DE NULL LOS CAMPOS DE NIT Y ADDRESS CUANDO NO VENGAN
-// TODO: REVISAR LOS PUBLIC CLASS PARA QUE NO SALGA EL MENSAJE DEL WARNING AL HACER EL POST DE UN REPORTE
 @Table({
   tableName: "reports",
 })
-class Report extends Model<Report> {
+class Report extends Model {
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(100),
     allowNull: false,
   })
-  name!: string;
+  name: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(100),
     allowNull: false,
   })
-  customerName!: string;
+  customerName: string;
 
   @Column({
-    type: DataType.BIGINT,
-    allowNull: true,
-    defaultValue: null,
-  })
-  nit!: number | null;
-
-  @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(100),
     allowNull: false,
   })
-  city!: string;
+  city: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: true,
-    defaultValue: null,
-  })
-  address!: string | null;
-
-  @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(100),
     allowNull: false,
   })
-  contactName!: string;
+  contactName: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(20),
     allowNull: false,
   })
-  phoneNumber!: string;
+  phoneNumber: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.STRING(100),
     allowNull: false,
   })
-  email!: string;
+  email: string;
 
   @Column({
     type: DataType.ENUM("low", "medium", "high"),
     allowNull: false,
   })
-  priority!: string;
+  priority: string;
 
   @Column({
     type: DataType.TEXT,
     allowNull: false,
   })
-  description!: string;
-
-  @HasMany(() => Workforce)
-  workforce!: Workforce[];
-
-  @HasMany(() => Material)
-  material!: Material[];
+  description: string;
 
   @Column({
     type: DataType.BOOLEAN,
-    allowNull: false,
     defaultValue: false,
   })
-  processed!: boolean;
+  processed: boolean;
 
   @Column({
-    type: DataType.INET,
+    type: DataType.DATE,
+    allowNull: false,
+  })
+  visitDate: Date;
+
+  @Column({
+    type: DataType.DATE,
+    allowNull: false,
+  })
+  dueDate: Date;
+  
+  @Default(null)
+  @Column({
+    type: DataType.INTEGER,
     allowNull: true,
-    defaultValue: null,
   })
-  tenderID!: number | null;
+  tenderID: number | null;
 
   @Column({
-    type: DataType.DATE,
+    type: DataType.STRING(100),
     allowNull: false,
   })
-  visitDate!: Date;
+  ref: string;
 
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-  })
-  dueDate!: Date;
+  @HasMany(() => Workforce)
+  workforce: Workforce[];
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  ref!: string;
+  @HasMany(() => Material)
+  material: Workforce[];
 }
 
 export default Report;

@@ -5,6 +5,7 @@ import {
   getReportbyId,
   getReports,
   updateReport,
+  updateReportProcessed,
 } from "./handlers/report";
 import handleInputErros from "./middlewares/handleInputErros";
 import { reportValidationSchema } from "./middlewares/reportValidationSchema";
@@ -44,25 +45,29 @@ router.get("/", getReports);
 router.get(
   "/:id",
   param("id").isInt().withMessage("ID no válido"),
-  handleInputErros,
   getReportbyId
 );
 
 router.post("/", reportValidationSchema, handleInputErros, createReport);
 
 //? verificar la validacion del post cuando se ingresan letras en el param
+router.post("/", createReport);
+
 router.put(
   "/:id",
   param("id").isInt().withMessage("ID no válido"),
-  reportValidationSchema,
-  handleInputErros,
   updateReport
 );
 
+router.patch(
+  "/:id",
+  param("id").isInt().withMessage("ID no válido"),
+  updateReportProcessed
+);
 router.delete(
   "/:id",
   param("id").isInt().withMessage("ID no válido"),
-  handleInputErros,
+
   deleteReport
 );
 

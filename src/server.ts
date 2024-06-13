@@ -16,8 +16,8 @@ export const connectDB = async () => {
       colors.bgGreen("Connection to bbdd has been established successfully.")
     );
   } catch (error) {
-    // console.log(error);
-    console.log(colors.bgRed("Unable to connect to the database"));
+    console.log(error)
+     console.log(colors.bgRed("'Unable to connect to the database."));
   }
 };
 
@@ -48,11 +48,8 @@ server.use(cors(corsOptions));
 
 //? READING DATA FROM FORM.
 server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+// server.use(express.urlencoded({ extended: true }));
 
-server.use(morgan('dev'))
-
-server.use("/api/report", reportRouter);
 
 //Docs
 server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
