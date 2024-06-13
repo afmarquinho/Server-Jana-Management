@@ -14,10 +14,8 @@ import { param } from "express-validator";
 const router = Router();
 
 // *ROUTING
-router.post("/", createReport);
 
 router.get("/", getReports);
-
 router.get(
   "/:id",
   param("id").isInt().withMessage("ID no válido"),
@@ -41,6 +39,7 @@ router.patch(
 router.delete(
   "/:id",
   param("id").isInt().withMessage("ID no válido"),
+
   deleteReport
 );
 
