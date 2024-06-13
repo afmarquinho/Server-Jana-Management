@@ -15,18 +15,16 @@ class Workforce extends Model<Workforce> {
     type: DataType.STRING,
     allowNull: false,
   })
-  workforce!: string;
+  workforce: string;
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  workShift!: number;
+  workShift: number;
 
   @ForeignKey(() => Report)
   @Column({ type: DataType.INTEGER, allowNull: false })
   reportID: number;
-
-  
 }
 
 export default Workforce;

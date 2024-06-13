@@ -1,85 +1,102 @@
-import { Table, Column, Model, DataType, HasMany, AllowNull } from "sequelize-typescript";
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  Default,
+  HasMany,
+} from "sequelize-typescript";
 import Workforce from "./Worforce.model";
 import Material from "./Material.model";
-
 
 @Table({
   tableName: "reports",
 })
-class Report extends Model<Report> {
+class Report extends Model {
   @Column({
-    type: DataType.STRING,
-    allowNull: false
+    type: DataType.STRING(100),
+    allowNull: false,
   })
-  visitDate!: string;
+  name: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: false
+    type: DataType.STRING(100),
+    allowNull: false,
   })
-  name!: string;
+  customerName: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: false
+    type: DataType.STRING(100),
+    allowNull: false,
   })
-  customerName!: string;
+  city: string;
 
   @Column({
-    type: DataType.BIGINT,
-    allowNull: false
+    type: DataType.STRING(100),
+    allowNull: false,
   })
-  nit!: number;
+  contactName: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: false
+    type: DataType.STRING(20),
+    allowNull: false,
   })
-  city!: string;
+  phoneNumber: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: false
+    type: DataType.STRING(100),
+    allowNull: false,
   })
-  address!: string;
+  email: string;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: false
+    type: DataType.ENUM("low", "medium", "high"),
+    allowNull: false,
   })
-  phoneNumber!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false
-  })
-  email!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false
-  })
-  dueDate!: string;
-
-  @Column({
-    type: DataType.ENUM('low', 'medium', 'high'),
-    allowNull: false
-  })
-  priority!: string;
+  priority: string;
 
   @Column({
     type: DataType.TEXT,
-    allowNull: false
+    allowNull: false,
   })
-  description!: string;
+  description: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  processed: boolean;
+
+  @Column({
+    type: DataType.DATE,
+    allowNull: false,
+  })
+  visitDate: Date;
+
+  @Column({
+    type: DataType.DATE,
+    allowNull: false,
+  })
+  dueDate: Date;
+  
+  @Default(null)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: true,
+  })
+  tenderID: number | null;
+
+  @Column({
+    type: DataType.STRING(100),
+    allowNull: false,
+  })
+  ref: string;
 
   @HasMany(() => Workforce)
-  workforce!: Workforce[];
+  workforce: Workforce[];
 
   @HasMany(() => Material)
-  materials!: Material[];
-
- 
+  material: Workforce[];
 }
 
-export default Report
+export default Report;

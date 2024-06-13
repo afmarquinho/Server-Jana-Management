@@ -15,28 +15,26 @@ class Material extends Model<Material> {
     type: DataType.STRING,
     allowNull: false,
   })
-  material!: string;
+  material: string;
 
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  amount!: number;
+  amount: number;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  unit!: string;
+  unit: string;
 
   @ForeignKey(() => Report)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  reportID!: number;
-
- 
+  reportID: number;
 }
 
 export default Material;
