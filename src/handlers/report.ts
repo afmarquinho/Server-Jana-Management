@@ -50,7 +50,17 @@ export const createReport = async (req: Request, res: Response) => {
 export const getReports = async (req: Request, res: Response) => {
   try {
     const reports = await Report.findAll({
-      include: [{ model: Workforce }, { model: Material }],
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: [
+        {
+          model: Workforce,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+        },
+        {
+          model: Material,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+        },
+      ],
     });
     res.status(200).json({ data: reports });
   } catch (error) {
@@ -63,9 +73,18 @@ export const getReportbyId = async (req: Request, res: Response) => {
   const reportId = req.params.id;
   try {
     const report = await Report.findByPk(reportId, {
-      include: [{ model: Workforce }, { model: Material }],
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: [
+        {
+          model: Workforce,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+        },
+        {
+          model: Material,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+        },
+      ],
     });
-
     if (!report) {
       res.status(404).json({ error: "Reporte no encontrado" });
       console.error("Reporte no encontrado");
@@ -105,7 +124,17 @@ export const updateReport = async (req: Request, res: Response) => {
     await transaction.commit();
 
     const updatedReport = await Report.findByPk(reportId, {
-      include: [{ model: Workforce }, { model: Material }],
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: [
+        {
+          model: Workforce,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+        },
+        {
+          model: Material,
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+        },
+      ],
     });
 
     res.status(200).json({ data: updatedReport });
@@ -135,8 +164,6 @@ export const updateReportProcessed = async (req: Request, res: Response) => {
     });
 
     res.status(200).json({ data: updatedReport });
-
-
   } catch (error) {
     console.error("Error al actualizar el reporte:", error.message);
     res.status(500).json({ error: "Error al actualizar el reporte" });
@@ -156,7 +183,7 @@ export const deleteReport = async (req: Request, res: Response) => {
       await transaction.rollback();
       res.status(404).json({ error: "Reporte no encontrado" });
       console.error("Reporte no encontrado");
-      return
+      return;
     }
 
     await Workforce.destroy({ where: { reportID: reportId }, transaction });
@@ -164,7 +191,9 @@ export const deleteReport = async (req: Request, res: Response) => {
     await report.destroy({ transaction });
 
     await transaction.commit();
-    res.status(200).json({ message: 'Reporte y registros asociados eliminados correctamente' });
+    res.status(200).json({
+      message: "Reporte y registros asociados eliminados correctamente",
+    });
   } catch (error) {
     await transaction.rollback();
     console.error("Error al eliminar el reporte:", error.message);

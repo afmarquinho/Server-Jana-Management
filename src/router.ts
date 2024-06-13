@@ -24,6 +24,9 @@ router.get(
   getReportbyId
 );
 
+
+router.post("/",  createReport);
+
 router.put(
   "/:id",
   param("id").isInt().withMessage("ID no válido"),
