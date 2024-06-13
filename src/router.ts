@@ -22,8 +22,8 @@ router.get(
   getReportbyId
 );
 
-//? verificar la validacion del post cuando se ingresan letras en el param
-router.post("/", createReport);
+
+router.post("/",  createReport);
 
 router.put(
   "/:id",
