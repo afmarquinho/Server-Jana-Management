@@ -3,40 +3,40 @@ import Report from "../models/Report.model";
 import Material from "../models/Material.model";
 import Workforce from "../models/Worforce.model";
 import db from "../config/db";
-import { check, validationResult } from "express-validator";
-import { PrimaryKey } from "sequelize-typescript";
 import { Transaction } from "sequelize";
 
 //? CREATE REPORTS
 export const createReport = async (req: Request, res: Response) => {
   const transaction: Transaction = await db.transaction();
+  
+  
+  
+   try {
+       const { workforce, material, ...reportData } = req.body;
 
-  try {
-    const { workforce, material, ...reportData } = req.body;
+     const newReport = await Report.create(reportData, { transaction });
+     for (const wf of workforce) {
+       await Workforce.create(
+         { ...wf, reportID: newReport.id },
+         { transaction }
+       );
+     }
+     for (const mt of material) {
+       await Material.create({ ...mt, reportID: newReport.id }, { transaction });
+     }
 
-    const newReport = await Report.create(reportData, { transaction });
-    for (const wf of workforce) {
-      await Workforce.create(
-        { ...wf, reportID: newReport.id },
-        { transaction }
-      );
-    }
-    for (const mt of material) {
-      await Material.create({ ...mt, reportID: newReport.id }, { transaction });
-    }
+     await transaction.commit();
 
-    await transaction.commit();
-
-    const fullReport = await Report.findByPk(newReport.id, {
-      include: [{ model: Workforce }, { model: Material }],
-    });
-    res.status(201).json({ data: fullReport });
-  } catch (error) {
-    transaction.rollback();
-    console.error("Error al crear el reporte:", error.message);
-    const err = new Error("Error al crear el reporte");
-    res.status(500).json({ error: err.message });
-  }
+     const fullReport = await Report.findByPk(newReport.id, {
+       include: [{ model: Workforce }, { model: Material }],
+     });
+     res.status(201).json({ data: fullReport });
+   } catch (error) {
+     transaction.rollback();
+     console.error("Error al crear el reporte:", error.message);
+     const err = new Error("Error al crear el reporte");
+     res.status(500).json({ error: err.message });
+   }
 };
 
 //! NOTA:

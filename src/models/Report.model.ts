@@ -61,9 +61,9 @@ class Report extends Model {
   })
   description: string;
 
+  @Default(false)
   @Column({
     type: DataType.BOOLEAN,
-    defaultValue: false,
   })
   processed: boolean;
 
