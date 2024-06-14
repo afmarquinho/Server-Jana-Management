@@ -2,86 +2,91 @@ import { body } from "express-validator";
 
 export const reportValidationSchema = [
   body("visitDate")
-    .notEmpty()
-    .withMessage("La fecha de visita no puede estar vacía")
     .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
-    .withMessage("La fecha de visita debe ser una fecha válida")
+    .notEmpty()
     .custom((value) => {
       const today: Date = new Date();
       const visitDate: Date = new Date(value);
       return visitDate <= today;
     })
-    .withMessage("La fecha de visita debe ser válida"),
+    .withMessage("La fecha de visita debe ser una fecha válida"),
+
   body("name")
+    .isString()
     .notEmpty()
-    .withMessage("El nombre de la cotización no puede estar vacío")
-    .isLength({ min: 1 })
-    .withMessage("Nombre es obligatorio"),
+    .withMessage("El nombre de la cotización debe ser válido"),
+
   body("customerName")
     .isString()
-    .withMessage("Ingrese un nombre del cliente válido")
-    .isLength({ min: 1 })
-    .withMessage("el nombre del cliente es obligatorio"),
-  body("city")
-    .isString()
-    .withMessage("Ingrese una cuidad de Colombia válida")
-    .isLength({ min: 1 })
-    .withMessage("Ciudad es obligatorio"),
+    .notEmpty()
+    .withMessage("Nombre del cliente debe ser válido"),
+
+  body("city").isString().notEmpty().withMessage("Ciudad debe ser válida"),
+
   body("phoneNumber")
     .isString()
-    .withMessage("Ingrese un teléfono válido")
-    .isLength({ min: 1 })
-    .withMessage("Teléfono es obligatorio"),
-  body("email").isEmail().withMessage("Ingrese un email válido"),
-  body("dueDate")
     .notEmpty()
-    .withMessage("La fecha de entrega no puede estar vacía")
+    .withMessage("Teléfono debe ser válido"),
+
+  body("email").isEmail().notEmpty().withMessage("Email debe ser válido"),
+
+  body("dueDate")
     .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
-    .withMessage("La fecha de entrega debe una fecha válida")
+    .notEmpty()
     .custom((value) => {
       const today: Date = new Date();
       const dueDate: Date = new Date(value);
       return dueDate >= today;
     })
     .withMessage("La fecha de entrega debe ser válida"),
+
   body("priority")
     .isIn(["low", "medium", "high"])
     .withMessage("La prioridad debe ser Alta, Media o Baja"),
-  body("description")
+
+    body("description")
     .isString()
-    .withMessage("Ingrese una descripción válida")
-    .isLength({ min: 1 })
-    .withMessage("la descripción es obligatoria"),
+    .notEmpty()
+    .withMessage("Ingrese una texto válido para la descripción"),
+
+    body("ref")
+    .isString()
+    .notEmpty()
+    .withMessage("Ingrese una referencia válida"),
+
   body("workforce")
     .isArray({ min: 1 })
     .withMessage("Debe haber al menos 1 mano de obra"),
+
   body("workforce.*.workforce")
     .isString()
-    .withMessage("Ingrese una mano de obra válida")
-    .isLength({ min: 1 })
-    .withMessage("La mano de obra es obligatoria"),
+    .notEmpty()
+    .withMessage("El nombre de la mano de obra es inválido"),
+
   body("workforce.*.workshift")
-    .isInt({ min: 1 })
-    .withMessage("El turno debe ser válido")
+    .isInt()
+    .notEmpty()
     .custom((value) => value > 0)
-    .withMessage("El turno debe ser válido"),
+    .withMessage("El turno debe ser un número válido"),
+
   body("material")
     .isArray({ min: 1 })
     .withMessage("Debe haber al menos 1 material"),
+
   body("material.*.material")
     .isString()
-    .withMessage("Ingrese un material válido")
-    .isLength({ min: 1 })
-    .withMessage("Material es obligatorio"),
+    .notEmpty()
+    .withMessage("El nombre del material debe ser válido"),
+
   body("material.*.amount")
     .isNumeric()
-    .withMessage("Amount must be a number")
+    .notEmpty()
     .custom((value) => value > 0)
-    .withMessage("a cantidad debe ser válida"),
+    .withMessage("La cantidad debe ser un número válido"),
+
   body("material.*.unit")
     .isString()
-    .withMessage("La unidad debe ser válida")
-    .isLength({ min: 1 })
+    .notEmpty()
     .withMessage("LA unidad de material es obligatorio"),
 ];
 

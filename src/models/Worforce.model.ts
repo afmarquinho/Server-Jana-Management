@@ -20,7 +20,7 @@ class Workforce extends Model<Workforce> {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  workShift: number;
+  workshift: number;
 
   @ForeignKey(() => Report)
   @Column({ type: DataType.INTEGER, allowNull: false })

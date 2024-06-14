@@ -16,31 +16,12 @@ const router = Router();
 // *ROUTING
 
 router.get("/", getReports);
-router.get(
-  "/:id",
-  param("id").isInt().withMessage("ID no válido"),
-  getReportbyId
-);
+router.get("/:id", param("id"), getReportbyId);
 
+router.post("/", reportValidationSchema, handleInputErros, createReport);
+router.put("/:id", reportValidationSchema, handleInputErros, updateReport);
 
-router.post("/",  createReport);
-
-router.put(
-  "/:id",
-  param("id").isInt().withMessage("ID no válido"),
-  updateReport
-);
-
-router.patch(
-  "/:id",
-  param("id").isInt().withMessage("ID no válido"),
-  updateReportProcessed
-);
-router.delete(
-  "/:id",
-  param("id").isInt().withMessage("ID no válido"),
-
-  deleteReport
-);
+router.patch("/:id", updateReportProcessed);
+router.delete("/:id", deleteReport);
 
 export default router;

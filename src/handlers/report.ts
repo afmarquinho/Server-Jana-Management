@@ -8,35 +8,33 @@ import { Transaction } from "sequelize";
 //? CREATE REPORTS
 export const createReport = async (req: Request, res: Response) => {
   const transaction: Transaction = await db.transaction();
-  
-  
-  
-   try {
-       const { workforce, material, ...reportData } = req.body;
 
-     const newReport = await Report.create(reportData, { transaction });
-     for (const wf of workforce) {
-       await Workforce.create(
-         { ...wf, reportID: newReport.id },
-         { transaction }
-       );
-     }
-     for (const mt of material) {
-       await Material.create({ ...mt, reportID: newReport.id }, { transaction });
-     }
+  try {
+    const { workforce, material, ...reportData } = req.body;
 
-     await transaction.commit();
+    const newReport = await Report.create(reportData, { transaction });
+    for (const wf of workforce) {
+      await Workforce.create(
+        { ...wf, reportID: newReport.id },
+        { transaction }
+      );
+    }
+    for (const mt of material) {
+      await Material.create({ ...mt, reportID: newReport.id }, { transaction });
+    }
 
-     const fullReport = await Report.findByPk(newReport.id, {
-       include: [{ model: Workforce }, { model: Material }],
-     });
-     res.status(201).json({ data: fullReport });
-   } catch (error) {
-     transaction.rollback();
-     console.error("Error al crear el reporte:", error.message);
-     const err = new Error("Error al crear el reporte");
-     res.status(500).json({ error: err.message });
-   }
+    await transaction.commit();
+
+    const fullReport = await Report.findByPk(newReport.id, {
+      include: [{ model: Workforce }, { model: Material }],
+    });
+    res.status(201).json({ data: fullReport });
+  } catch (error) {
+    transaction.rollback();
+    console.error("Error al crear el reporte:", error.message);
+    const err = new Error("Error al crear el reporte");
+    res.status(500).json({ error: err.message });
+  }
 };
 
 //! NOTA:
@@ -71,6 +69,7 @@ export const getReports = async (req: Request, res: Response) => {
 //? GET REPORT BY ID
 export const getReportbyId = async (req: Request, res: Response) => {
   const reportId = req.params.id;
+
   try {
     const report = await Report.findByPk(reportId, {
       attributes: { exclude: ["createdAt", "updatedAt"] },
@@ -86,8 +85,10 @@ export const getReportbyId = async (req: Request, res: Response) => {
       ],
     });
     if (!report) {
-      res.status(404).json({ error: "Reporte no encontrado" });
-      console.error("Reporte no encontrado");
+      res
+        .status(404)
+        .json({ error: "Reporte no encontrado por parámetro inválido" });
+      console.error("Reporte no encontrado por parámetro inválido");
       return;
     }
     res.status(200).json({ data: report });
@@ -108,8 +109,11 @@ export const updateReport = async (req: Request, res: Response) => {
     const report = await Report.findByPk(reportId);
     if (!report) {
       await transaction.rollback();
-      console.error("Reporte no encontrado");
-      return res.status(404).json({ error: "Reporte no encontrado" });
+
+      console.error("Reporte no encontrado por parámetro inválido");
+      return res
+        .status(404)
+        .json({ error: "Reporte no encontrado por parámetro inválido" });
     }
     await report.update(reportData, { transaction });
 
@@ -152,8 +156,10 @@ export const updateReportProcessed = async (req: Request, res: Response) => {
     const report = await Report.findByPk(reportId);
 
     if (!report) {
-      res.status(404).json({ error: "Reporte no encontrado" });
-      console.error("Reporte no encontrado");
+      res
+        .status(404)
+        .json({ error: "Reporte no encontrado por parámetro inválido" });
+      console.error("Reporte no encontrado por parámetro inválido");
       return;
     }
 
@@ -181,8 +187,10 @@ export const deleteReport = async (req: Request, res: Response) => {
 
     if (!report) {
       await transaction.rollback();
-      res.status(404).json({ error: "Reporte no encontrado" });
-      console.error("Reporte no encontrado");
+      res
+        .status(404)
+        .json({ error: "Reporte no encontrado por parámetro inválido" });
+      console.error("Reporte no encontrado por parámetro inválido");
       return;
     }
 
