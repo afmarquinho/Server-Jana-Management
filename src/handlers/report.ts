@@ -149,6 +149,7 @@ export const updateReport = async (req: Request, res: Response) => {
   }
 };
 
+
 export const updateReportProcessed = async (req: Request, res: Response) => {
   const reportId = req.params.id;
 
