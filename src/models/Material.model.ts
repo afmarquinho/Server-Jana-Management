@@ -21,7 +21,7 @@ class Material extends Model<Material> {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  amount: number;
+  quantity: number;
 
   @Column({
     type: DataType.STRING,
