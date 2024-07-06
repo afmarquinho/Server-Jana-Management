@@ -6,9 +6,9 @@ import {
   getReports,
   updateReport,
   updateReportProcessed,
-} from "./handlers/report";
-import handleInputErros from "./middlewares/handleInputErros";
-import { reportValidationSchema } from "./middlewares/reportValidationSchema";
+} from "../handlers/report";
+import handleInputErros from "../middlewares/handleInputErros";
+import { reportValidationSchema } from "../middlewares/reportValidationSchema";
 import { param } from "express-validator";
 
 const router = Router();

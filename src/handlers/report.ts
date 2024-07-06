@@ -201,7 +201,7 @@ export const deleteReport = async (req: Request, res: Response) => {
 
     await transaction.commit();
     res.status(200).json({
-      message: "Reporte y registros asociados eliminados correctamente",
+      data: "Reporte y registros asociados eliminados correctamente",
     });
   } catch (error) {
     await transaction.rollback();

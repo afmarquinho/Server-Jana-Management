@@ -1,11 +1,12 @@
 import express from "express";
 import colors from "colors";
 import swaggerUi from "swagger-ui-express";
-import reportRouter from "./router";
 import db from "./config/db";
 import swaggerSpec from "./config/swagger";
 import cors, { CorsOptions } from "cors";
 import morgan from "morgan";
+import reportRouter from "./router/reportRouter";
+import userRouter from "./router/userRouter";
 
 // * CONNECT TO DATA BASE
 export const connectDB = async () => {
@@ -50,6 +51,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 server.use("/api/report", reportRouter);
+server.use("/api/user", userRouter);
 
 //Docs
 // server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

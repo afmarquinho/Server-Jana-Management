@@ -78,7 +78,7 @@ export const reportValidationSchema = [
     .notEmpty()
     .withMessage("El nombre del material debe ser válido"),
 
-  body("material.*.amount")
+  body("material.*.quantity")
     .isNumeric()
     .notEmpty()
     .custom((value) => value > 0)
