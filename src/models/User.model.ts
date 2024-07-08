@@ -70,6 +70,6 @@ class User extends Model<User> {
   })
   password: string; // Asegúrate de que password esté definido correctamente como STRING
 
-}
+ }
 
 export default User;

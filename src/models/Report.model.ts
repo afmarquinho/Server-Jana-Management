@@ -5,9 +5,11 @@ import {
   DataType,
   Default,
   HasMany,
+  HasOne,
 } from "sequelize-typescript";
 import Workforce from "./Worforce.model";
 import Material from "./Material.model";
+import Tender from "./Tender.model";
 
 @Table({
   tableName: "reports",
@@ -78,7 +80,7 @@ class Report extends Model {
     allowNull: false,
   })
   dueDate: Date;
-  
+
   @Default(null)
   @Column({
     type: DataType.INTEGER,
@@ -97,6 +99,9 @@ class Report extends Model {
 
   @HasMany(() => Material)
   material: Workforce[];
+
+  @HasOne(() => Tender)
+  tender: Tender;
 }
 
 export default Report;

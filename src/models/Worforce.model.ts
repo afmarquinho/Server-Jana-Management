@@ -4,6 +4,7 @@ import {
   Model,
   ForeignKey,
   DataType,
+  BelongsTo,
 } from "sequelize-typescript";
 import Report from "./Report.model";
 
@@ -25,6 +26,9 @@ class Workforce extends Model<Workforce> {
   @ForeignKey(() => Report)
   @Column({ type: DataType.INTEGER, allowNull: false })
   reportID: number;
+
+  @BelongsTo(() => Report)
+  report: Report;
 }
 
 export default Workforce;

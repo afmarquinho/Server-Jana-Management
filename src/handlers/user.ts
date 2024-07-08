@@ -2,16 +2,15 @@ import { Request, Response } from "express";
 import User from "../models/User.model";
 import bcrypt from "bcryptjs";
 
-//TODO: HACER EL HASEHO DE LAS CONTRASEÑA
+//! IMPORTANTE: NO ESTÁ HACIENDOPP HASEHO DE LAS CONTRASEÑA
 
 //? CREATE USER
-
-export const registerUser = async (req: Request, res: Response) => {
+export const createUser = async (req: Request, res: Response) => {
   const user = req.body;
   try {
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(user.password, salt);
-    // user.password = hashedPassword;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(user.password, salt);
+    user.password = hashedPassword;
 
     const newUser = await User.create(user);
     res.status(201).json({ data: newUser });
@@ -27,6 +26,10 @@ export const getUsers = async (req: Request, res: Response) => {
     const users = await User.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
+    if (users.length === 0) {
+      console.error("No se encontraron usuarios");
+      return res.status(404).json({ error: "No se encontraron usuarios" });
+    }
     res.status(200).json({ data: users });
   } catch (error) {
     console.error("Error al crear el usuario:", error.message);
@@ -42,6 +45,10 @@ export const getUserById = async (req: Request, res: Response) => {
     const user = await User.findByPk(id, {
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
+    if (!user) {
+      console.error("Usuario no encontrado");
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
     res.status(200).json({ data: user });
   } catch (error) {
     console.error("Error al obtener la buscar usuario:", error.message);
@@ -60,9 +67,9 @@ export const updateUser = async (req: Request, res: Response) => {
       console.error("Usuario no encontrado");
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(user.password, salt);
-    // user.password = hashedPassword;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(userData.password, salt);
+    userData.password = hashedPassword;
 
     await user.update(userData);
     const updatedUser = await User.findByPk(id, {
@@ -103,23 +110,28 @@ export const deleteUser = async (req: Request, res: Response) => {
 export const authenticate = async (req: Request, res: Response) => {
   const { user, password } = req.body;
 
+  if (!user || !password) {
+    return res
+      .status(400)
+      .json({ error: "Usuario y contraseña son requeridos" });
+  }
+
   try {
     const foundUser = await User.findOne({ where: { user } });
 
     if (!foundUser) {
       return res.status(404).json({ error: "Usuario no registrado" });
     }
-    // if(password !== foundUser.password){
-    //   return res.status(404).json({ error: "credenciales no coinciden" });
-    // }
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      foundUser.dataValues.password
+    );
 
-    //   const match = await bcrypt.compare(password, foundUser.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: "Contraseña incorrecta" });
+    }
 
-    //   if (!match) {
-    //    return res.status(401).json({ error: "Credenciales inválidas" });
-    //  }
-
-    res.json({ data: foundUser.password });
+    res.json({ data: foundUser });
   } catch (error) {
     console.error("Error en la autenticación:", error);
     res.status(500).json({ error: "Error en la autenticación" });
