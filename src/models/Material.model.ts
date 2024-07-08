@@ -4,6 +4,7 @@
     Table,
     ForeignKey,
     Model,
+    BelongsTo,
   } from "sequelize-typescript";
   import Report from "./Report.model";
 
@@ -35,6 +36,9 @@ class Material extends Model<Material> {
     allowNull: false,
   })
   reportID: number;
+
+  @BelongsTo(() => Report)
+  report: Report;
 }
 
   export default Material;

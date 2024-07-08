@@ -7,6 +7,7 @@ import cors, { CorsOptions } from "cors";
 import morgan from "morgan";
 import reportRouter from "./router/reportRouter";
 import userRouter from "./router/userRouter";
+import tenderRouter from "./router/tenderRouter";
 
 // * CONNECT TO DATA BASE
 export const connectDB = async () => {
@@ -18,7 +19,7 @@ export const connectDB = async () => {
     );
   } catch (error) {
     console.log(error);
-    console.log(colors.bgRed("'Unable to connect to the database."));
+    console.log(colors.bgRed("Unable to connect to the database."));
   }
 };
 
@@ -50,8 +51,9 @@ server.use(cors(corsOptions));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-server.use("/api/report", reportRouter);
+server.use("/api/reports", reportRouter);
 server.use("/api/user", userRouter);
+server.use("/api/tenders", tenderRouter);
 
 //Docs
 // server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
