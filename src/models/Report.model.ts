@@ -6,9 +6,8 @@ import {
   Default,
   HasMany,
   HasOne,
+  ForeignKey,
 } from "sequelize-typescript";
-import Workforce from "./Worforce.model";
-import Material from "./Material.model";
 import Tender from "./Tender.model";
 
 @Table({
@@ -81,6 +80,7 @@ class Report extends Model {
   })
   dueDate: Date;
 
+  @ForeignKey(() => Tender)
   @Default(null)
   @Column({
     type: DataType.INTEGER,
@@ -94,11 +94,24 @@ class Report extends Model {
   })
   ref: string;
 
-  @HasMany(() => Workforce)
-  workforce: Workforce[];
+  @Column({
+    type: DataType.ARRAY(DataType.JSON),
+    allowNull: false,
+  })
+  workforce: {
+    workforce: string;
+    workshift: number;
+  }[];
 
-  @HasMany(() => Material)
-  material: Workforce[];
+  @Column({
+    type: DataType.ARRAY(DataType.JSON),
+    allowNull: false,
+  })
+  material: {
+    material: string;
+    quantity: number;
+    unit: string;
+  }[];
 
   @HasOne(() => Tender)
   tender: Tender;

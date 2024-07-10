@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import User from "../models/User.model";
 import bcrypt from "bcryptjs";
 
-//! IMPORTANTE: NO ESTÁ HACIENDOPP HASEHO DE LAS CONTRASEÑA
+//TODO: CREAR EL CONTROLADOR PARA ACTUALIZAR LA CONTRASEÑA
 
 //? CREATE USER
 export const createUser = async (req: Request, res: Response) => {
@@ -32,8 +32,8 @@ export const getUsers = async (req: Request, res: Response) => {
     }
     res.status(200).json({ data: users });
   } catch (error) {
-    console.error("Error al crear el usuario:", error.message);
-    const err = new Error("Error al crear el usuario");
+    console.error("Error al obtener usuarios:", error.message);
+    const err = new Error("Error al obtender usuarios");
     res.status(500).json({ error: err.message });
   }
 };
@@ -83,6 +83,30 @@ export const updateUser = async (req: Request, res: Response) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+//? UPDATE PASSWORD
+export const updatePassword = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { password } = req.body;
+
+ try {
+  const user = await User.findByPk(id);
+  if (!user) {
+    return res.status(404).json({ error: "Usuario no encontrado" });
+  }
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  await user.update({ password: hashedPassword });
+  res.status(200).json({ message: "Contraseña actualizada correctamente" });
+
+ } catch (error) {
+  console.error("Error al actualizar la contraseña:", error.message);
+  const err = new Error("Error al actualizar la contraseña");
+  res.status(500).json({ error: err.message });
+ }
+
+}
+
 
 //? DELETE USER
 
