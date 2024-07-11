@@ -21,9 +21,9 @@ class User extends Model<User> {
     allowNull: false,
   })
   idType: string;
-
+  
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.BIGINT,
     allowNull: false,
   })
   ID: number;

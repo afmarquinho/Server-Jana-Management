@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const db = new Sequelize(process.env.DATABASE_URL!, {
+const db = new Sequelize(process.env.DATABASE_URL2!, {
   models: [__dirname + "/../models/**/*.ts"],
   logging: false,
 });
