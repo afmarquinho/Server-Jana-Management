@@ -27,7 +27,6 @@ connectDB();
 
 const server = express();
 
-
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins = [process.env.FRONTEND_URL]; // Lista de orígenes permitidos
@@ -54,6 +53,10 @@ server.use(express.urlencoded({ extended: true }));
 server.use("/api/reports", reportRouter);
 server.use("/api/user", userRouter);
 server.use("/api/tenders", tenderRouter);
+
+server.get("/api", (req, res) => {
+  res.json({ msg: "Desde API" });
+});
 
 //Docs
 // server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

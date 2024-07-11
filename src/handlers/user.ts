@@ -51,8 +51,8 @@ export const getUserById = async (req: Request, res: Response) => {
     }
     res.status(200).json({ data: user });
   } catch (error) {
-    console.error("Error al obtener la buscar usuario:", error.message);
-    const err = new Error("Error al obtener la buscar usuario");
+    console.error("Error al obtener usuario:", error.message);
+    const err = new Error("Error al obtener usuario");
     res.status(500).json({ error: err.message });
   }
 };
