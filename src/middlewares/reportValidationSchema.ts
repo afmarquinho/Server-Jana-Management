@@ -4,15 +4,15 @@ import { body } from "express-validator";
 export const reportValidationSchema = [
   body("visitDate")
     .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
-    .withMessage("Digite una fecha válida")
+    .withMessage("Digite una fecha de visita válida")
     .notEmpty()
-    .withMessage("La fecha de vista no puede estar vacía")
+    .withMessage("La fecha de visita no puede estar vacía")
     .custom((value) => {
       const today: Date = new Date();
       const visitDate: Date = new Date(value);
       return visitDate <= today;
     })
-    .withMessage("Digite una fecha válida"),
+    .withMessage("Digite una fecha de visita válida"),
 
   body("name")
     .isString()

@@ -42,7 +42,22 @@ export const getReportbyId = async (req: Request, res: Response) => {
       console.error("Reporte no encontrado por parámetro inválido");
       return;
     }
-    res.status(200).json({ data: report });
+    
+    const formatDate = (date: Date): string => {
+      const d = new Date(date);
+      const year = d.getFullYear();
+      const month = (d.getMonth() + 1).toString().padStart(2, '0');
+      const day = d.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+
+    const formattedReport = {
+      ...report.toJSON(),
+      visitDate: formatDate(report.visitDate),
+      dueDate: formatDate(report.dueDate)
+    };
+
+    res.status(200).json({ data: formattedReport });
   } catch (error) {
     console.error("Error al obtener el reporte:", error.message);
     res.status(500).json({ error: "Error al obtener el reporte" });
@@ -99,10 +114,10 @@ export const updateReportProcessed = async (req: Request, res: Response) => {
 //? DELETE REPORT
 
 export const deleteReport = async (req: Request, res: Response) => {
-  const reportId = req.params.id; // Obtener el ID del reporte desde los parámetros de la solicitud
+  const{id} = req.params; // Obtener el ID del reporte desde los parámetros de la solicitud
 
   try {
-    const report = await Report.findByPk(reportId);
+    const report = await Report.findByPk(id);
 
     if (!report) {
       res
@@ -111,6 +126,7 @@ export const deleteReport = async (req: Request, res: Response) => {
       console.error("Reporte no encontrado por parámetro inválido");
       return;
     }
+    await report.destroy()
 
     res.status(200).json({
       data: "Reporte y registros asociados eliminados correctamente",
