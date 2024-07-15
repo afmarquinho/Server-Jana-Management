@@ -88,6 +88,7 @@ export const updateReport = async (req: Request, res: Response) => {
   }
 };
 
+//? PROCESSED REPORT
 export const updateReportProcessed = async (req: Request, res: Response) => {
   const reportId = req.params.id;
 

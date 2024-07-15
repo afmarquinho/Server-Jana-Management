@@ -1,6 +1,5 @@
 import { body } from "express-validator";
 
-
 export const reportValidationSchema = [
   body("visitDate")
     .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
@@ -31,6 +30,12 @@ export const reportValidationSchema = [
     .withMessage("Ciudad debe ser válida")
     .notEmpty()
     .withMessage("El campo ciudad no puede estar vacío"),
+
+  body("contactName")
+    .isString()
+    .withMessage("Ingrese un Nombre de Contacto válido")
+    .notEmpty()
+    .withMessage("El Nombre de Contacto es obligatorio"),
 
   body("phoneNumber")
     .isString()
@@ -107,8 +112,8 @@ export const reportValidationSchema = [
     .withMessage("La cantidad de material no puede estar vacía")
     .custom((value) => value > 0)
     .withMessage("La cantidad de material debe ser válida"),
-    
-    body("material.*.unit")
+
+  body("material.*.unit")
     .isString()
     .withMessage("Digite una unidad del material válida")
     .notEmpty()
