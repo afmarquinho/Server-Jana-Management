@@ -13,7 +13,7 @@ export const reportValidationSchema = [
     })
     .withMessage("Digite una fecha de visita válida"),
 
-  body("name")
+  body("customerName")
     .isString()
     .withMessage("El nombre de la cotización debe ser válido")
     .notEmpty()
@@ -25,7 +25,7 @@ export const reportValidationSchema = [
     .notEmpty()
     .withMessage("Nombre del cliente no puede estar vacío"),
 
-  body("city")
+  body("customerCity")
     .isString()
     .withMessage("Ciudad debe ser válida")
     .notEmpty()
@@ -81,7 +81,7 @@ export const reportValidationSchema = [
     .isArray({ min: 1 })
     .withMessage("Debe haber al menos 1 mano de obra"),
 
-  body("workforce.*.workforce")
+  body("workforce.*.role")
     .isString()
     .withMessage("El nombre de la mano de obra es inválido")
     .notEmpty()
@@ -118,6 +118,12 @@ export const reportValidationSchema = [
     .withMessage("Digite una unidad del material válida")
     .notEmpty()
     .withMessage("La unidad de material no puede estar vacía"),
+
+  body("createdBy")
+    .isString()
+    .withMessage("El nombre del usuario debe ser correcto")
+    .notEmpty()
+    .withMessage("El nombre del usuario no debe estar vacío"),
 ];
 
 //? NOTA EXPLICATORIA DE LA VALIDACIÓN DEL ARRAY DE OBJETOS.

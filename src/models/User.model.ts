@@ -56,7 +56,7 @@ class User extends Model<User> {
     type: DataType.ENUM('gerente', 'ing cotizacion', 'ing obra', 'administrador'),
     allowNull: false,
   })
-  jobTitle: string;
+  rol: string;
 
   @Column({
     type: DataType.STRING,

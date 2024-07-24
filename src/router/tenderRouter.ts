@@ -11,8 +11,8 @@ import { tenderValidationSchema } from "../middlewares/tenderValidationSchema";
 
 const router = Router();
 
-router.post("/", tenderValidationSchema, handleInputErros, createTender);
-router.put("/:id", tenderValidationSchema, handleInputErros, updateTender);
+router.post("/", createTender);
+router.put("/:id", updateTender);
 
 router.get("/", getTenders);
 router.get("/:id", getTender);

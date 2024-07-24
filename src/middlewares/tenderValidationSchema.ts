@@ -1,40 +1,49 @@
 import { body } from "express-validator";
 
-export const tenderValidationSchema =[
-    body("visitDate")
-    .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
-    .withMessage("Digite una fecha válida")
+export const tenderValidationSchema = [
+  body("reportId")
+    .isNumeric()
+    .withMessage("Id del reporte no es válido")
     .notEmpty()
-    .withMessage("La fecha de vista no puede estar vacía")
-    .custom((value) => {
-      const today: Date = new Date();
-      const visitDate: Date = new Date(value);
-      return visitDate <= today;
-    })
-    .withMessage("Digite una fecha válida"),
+    .withMessage("El Id del reporte no puede estar vacío"),
 
-    body("name")
+    body("createdBy")
     .isString()
-    .withMessage("El nombre de la cotización debe ser válido")
+    .withMessage("createdBy no es válido")
     .notEmpty()
-    .withMessage("El nombre de la cotización no debe estar vacío"),
-
-  body("customerName")
-    .isString()
-    .withMessage("Digite un nombre de cliente válido")
-    .notEmpty()
-    .withMessage("Nombre del cliente no puede estar vacío"),
-
-  body("city")
-    .isString()
-    .withMessage("Ciudad debe ser válida")
-    .notEmpty()
-    .withMessage("El campo ciudad no puede estar vacío"),
+    .withMessage("El campo 'createdBy' no puede estar vacío"),
 
 
+  //   body("visitDate")
+  //   .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
+  //   .withMessage("Digite una fecha válida")
+  //   .notEmpty()
+  //   .withMessage("La fecha de vista no puede estar vacía")
+  //   .custom((value) => {
+  //     const today: Date = new Date();
+  //     const visitDate: Date = new Date(value);
+  //     return visitDate <= today;
+  //   })
+  //   .withMessage("Digite una fecha válida"),
 
-]
+  //   body("name")
+  //   .isString()
+  //   .withMessage("El nombre de la cotización debe ser válido")
+  //   .notEmpty()
+  //   .withMessage("El nombre de la cotización no debe estar vacío"),
 
+  // body("customerName")
+  //   .isString()
+  //   .withMessage("Digite un nombre de cliente válido")
+  //   .notEmpty()
+  //   .withMessage("Nombre del cliente no puede estar vacío"),
+
+  // body("customerCity")
+  //   .isString()
+  //   .withMessage("Ciudad debe ser válida")
+  //   .notEmpty()
+  //   .withMessage("El campo ciudad no puede estar vacío"),
+];
 
 // {
 //     "visitDate": "2024-06-15",
@@ -73,4 +82,3 @@ export const tenderValidationSchema =[
 //       }
 //     ]
 //   }
-  

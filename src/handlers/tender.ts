@@ -3,13 +3,69 @@ import Report from "../models/Report.model";
 import Tender from "../models/Tender.model";
 import { Transaction } from "sequelize";
 import db from "../config/db";
+type WorkforceReportType = {
+  role: string;
+  workshift: number;
+};
 
+export type MaterialReportType = {
+  material: string;
+  quantity: number;
+  unit: string;
+};
+
+type MaterialType = {
+  material: string;
+  unit: string;
+  quantity: number;
+  unitCost: number;
+  totalCost: number;
+  profit: number;
+  profitAmount: number;
+};
+type WorkforceType = {
+  role: string;
+  workers: number;
+  rate: number;
+  workshift: number;
+  profit: number;
+  profitAmount: number;
+};
+
+type Tendertype = {
+  name: string;
+  customerName: string;
+  contactName: string;
+  email: string;
+  phoneNumber: string;
+  customerCity: string;
+  createdBy: string;
+  reportId: number;
+  ref: string;
+  workforce: WorkforceType[];
+  material: MaterialType[];
+};
 //? CREATE TENDER
 export const createTender = async (req: Request, res: Response) => {
   const tenderData = req.body;
+
+  let tender: Tendertype = {
+    name: "",
+    customerName: "",
+    contactName: "",
+    email: "",
+    phoneNumber: "",
+    customerCity: "",
+    createdBy: tenderData.createdBy,
+    reportId: tenderData.reportId,
+    ref: "",
+    workforce: [],
+    material: [],
+  };
+
   const transaction: Transaction = await db.transaction();
+
   try {
-    const newTender = await Tender.create(tenderData, { transaction });
     const report = await Report.findByPk(tenderData.reportId);
 
     if (!report) {
@@ -17,28 +73,56 @@ export const createTender = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Reporte no encontrado" });
     }
 
-    await report.update({ tenderID: newTender.id }, { transaction });
+    tender.name = report.dataValues.name;
+    tender.customerName = report.dataValues.customerName;
+    tender.contactName = report.dataValues.contactName;
+    tender.email = report.dataValues.email;
+    tender.phoneNumber = report.dataValues.phoneNumber;
+    tender.customerCity = report.dataValues.customerCity;
+    tender.ref = report.dataValues.ref;
+    tender.workforce = report.dataValues.workforce.map(
+      (item: WorkforceReportType) => ({
+        role: item.role,
+        workers: 0,
+        rate: 0,
+        workshift: item.workshift,
+        profit: 0,
+        profitAmount: 0,
+      })
+    );
 
+    tender.material = report.dataValues.material.map(
+      (item: MaterialReportType) => ({
+        material: item.material,
+        unit: item.unit,
+        quantity: item.quantity,
+        unitCost: 0,
+        totalCost: 0,
+        profit: 0,
+        profitAmount: 0,
+      })
+    );
+
+    const newTender = await Tender.create(tender, {
+      transaction,
+    });
+    await report.update(
+      { tenderID: newTender.id, close: true },
+      { transaction }
+    );
     await transaction.commit();
 
-    const fullTender = await Tender.findByPk(newTender.id, {
-      include: [{ model: Report }],
+    const tenderRes = await Tender.findByPk(newTender.id, {
+      attributes: { exclude: ["createdAt", "updatedAt"] },
     });
 
-    res.status(201).json({ data: fullTender });
+    res.status(201).json({ data: tenderRes });
   } catch (error) {
     await transaction.rollback();
     console.error("Error al crear la cotización:", error.message);
     res.status(500).json({ error: "Error al crear la cotización" });
   }
 };
-
-//! NOTA: PARA CASOS EN QUE INTERACTUÉ CON VARIAS BASES DE DATOS DESDE UNA FUNCIÓIN
-//? Utilizamos "TRASACTION" para asegurar que todas las operaciones de creación
-//? (crear Report, Workforce, y Material) se realicen de manera atómica. Esto significa
-//? que si una de las operaciones falla, todas las operaciones se revertirán,
-//? asegurando la integridad de los datos.
-//? Si cae en el rollback eso deshace las operaciones de la bbdd hechas arriba.
 
 //? GET TENDERS
 export const getTenders = async (req: Request, res: Response) => {
@@ -96,6 +180,7 @@ export const updateTender = async (req: Request, res: Response) => {
       console.error("Cotización no encontrada por parámetro inválido");
       return;
     }
+
     const updatedTender = await tender.update(tenderData);
     res.status(200).json({ data: updatedTender });
   } catch (error) {
@@ -137,3 +222,10 @@ export const deleteTender = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error al eliminar la cotización" });
   }
 };
+
+//! NOTA: PARA CASOS EN QUE INTERACTUÉ CON VARIAS BASES DE DATOS DESDE UNA FUNCIÓIN
+//? Utilizamos "TRASACTION" para asegurar que todas las operaciones de creación
+//? (crear Report, Workforce, y Material) se realicen de manera atómica. Esto significa
+//? que si una de las operaciones falla, todas las operaciones se revertirán,
+//? asegurando la integridad de los datos.
+//? Si cae en el rollback eso deshace las operaciones de la bbdd hechas arriba.
