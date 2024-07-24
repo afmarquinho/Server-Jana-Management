@@ -27,6 +27,7 @@ export const getReports = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error al obtener los reportes" });
   }
 };
+
 //? GET REPORT BY ID
 export const getReportbyId = async (req: Request, res: Response) => {
   const reportId = req.params.id;
@@ -112,8 +113,8 @@ export const updateReportProcessed = async (req: Request, res: Response) => {
   }
 };
 
-//? DELETE REPORT
 
+//? DELETE REPORT
 export const deleteReport = async (req: Request, res: Response) => {
   const{id} = req.params; // Obtener el ID del reporte desde los parámetros de la solicitud
 

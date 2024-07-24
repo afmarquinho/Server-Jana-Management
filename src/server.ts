@@ -51,7 +51,7 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
 server.use("/api/reports", reportRouter);
-server.use("/api/user", userRouter);
+server.use("/api/users", userRouter);
 server.use("/api/tenders", tenderRouter);
 
 server.get("/api", (req, res) => {

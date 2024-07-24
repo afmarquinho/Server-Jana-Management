@@ -10,6 +10,7 @@ import {
 } from "sequelize-typescript";
 import Tender from "./Tender.model";
 
+
 @Table({
   tableName: "reports",
 })
@@ -30,7 +31,7 @@ class Report extends Model {
     type: DataType.STRING(100),
     allowNull: false,
   })
-  city: string;
+  customerCity: string;
 
   @Column({
     type: DataType.STRING(100),
@@ -62,11 +63,7 @@ class Report extends Model {
   })
   description: string;
 
-  @Default(false)
-  @Column({
-    type: DataType.BOOLEAN,
-  })
-  processed: boolean;
+
 
   @Column({
     type: DataType.DATE,
@@ -99,7 +96,7 @@ class Report extends Model {
     allowNull: false,
   })
   workforce: {
-    workforce: string;
+    role: string;
     workshift: number;
   }[];
 
@@ -112,6 +109,18 @@ class Report extends Model {
     quantity: number;
     unit: string;
   }[];
+
+  @Default(false)
+  @Column({
+    type: DataType.BOOLEAN,
+  })
+  processed: boolean;
+ 
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  createdBy: string;
 
   @HasOne(() => Tender)
   tender: Tender;
