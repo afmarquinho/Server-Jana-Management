@@ -10,6 +10,7 @@ import {
 } from "sequelize-typescript";
 import Tender from "./Tender.model";
 
+
 @Table({
   tableName: "reports",
 })
