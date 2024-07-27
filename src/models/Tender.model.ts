@@ -11,7 +11,6 @@ import Report from "./Report.model";
 
 @Table({ tableName: "tenders" })
 class Tender extends Model {
-
   @Default(null)
   @Column({
     type: DataType.STRING(100),
@@ -60,7 +59,7 @@ class Tender extends Model {
     allowNull: false,
   })
   createdBy: string;
-  
+
   @Default(null)
   @Column({
     type: DataType.STRING(100),
@@ -150,17 +149,23 @@ class Tender extends Model {
   })
   otherExpenses: {
     description: string;
-  shiftType: string;
-  unit: string;
-  amount: number;
-  unitCost: number;
-  partialCost: number;
-  profit: number;
-  profitAmount: number;
-  totalValue: number;
+    shiftType: string;
+    unit: string;
+    amount: number;
+    unitCost: number;
+    partialCost: number;
+    profit: number;
+    profitAmount: number;
+    totalValue: number;
   }[];
-  
-  @Default({})
+
+  @Default({
+    materials: 0,
+    preparation: 0,
+    day: 0,
+    night: 0,
+    total: 0,
+  })
   @Column({
     type: DataType.JSON,
     allowNull: true,
@@ -170,7 +175,7 @@ class Tender extends Model {
     preparation: number;
     day: number;
     night: number;
-    total:number
+    total: number;
   };
 
   @Default([])
@@ -193,6 +198,18 @@ class Tender extends Model {
     allowNull: true,
   })
   ref: string;
+
+  @Default([])
+  @Column({
+    type: DataType.ARRAY(DataType.JSON),
+    allowNull: true,
+  })
+  comments: [
+    {
+      author: string;
+      comment: string;
+    }
+  ];
 
   @ForeignKey(() => Report)
   @Column({
