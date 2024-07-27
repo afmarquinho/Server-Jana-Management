@@ -3,75 +3,12 @@ import Report from "../models/Report.model";
 import Tender from "../models/Tender.model";
 import { Transaction } from "sequelize";
 import db from "../config/db";
-type WorkforceReportType = {
-  role: string;
-  workshift: number;
-};
+import {
+  MaterialReportType,
+  Tendertype,
+  WorkforceReportType,
+} from "../types/types";
 
-export type MaterialReportType = {
-  material: string;
-  quantity: number;
-  unit: string;
-};
-
-export type SupplyType = {
-  description: string;
-  unit: string;
-  quantity: number;
-  unitCost: number;
-  partialCost: number;
-  profit: number;
-  profitAmount: number;
-  totalValue: number;
-};
-
-type LaborType = {
-  role: string;
-  workers: number;
-  shiftType: string;
-  rate: number;
-  shiftCount: number;
-  partialCost: number;
-  profit: number;
-  profitAmount: number;
-  totalValue: number;
-};
-
-type OtherExpenses = {
-  description: string;
-  shiftType: string;
-  unit: string;
-  amount: number;
-  unitCost: number;
-  partialCost: number;
-  profit: number;
-  profitAmount: number;
-  totalValue: number;
-};
-
-export type OfferSummary = {
-  materials: number;
-  preparation: number;
-  day: number;
-  night: number;
-  total: number;
-};
-
-type Tendertype = {
-  name: string;
-  customerName: string;
-  contactName: string;
-  email: string;
-  phoneNumber: string;
-  customerCity: string;
-  createdBy: string;
-  reportId: number;
-  ref: string;
-  workforce: LaborType[];
-  materials: SupplyType[];
-  otherExpenses: OtherExpenses[];
-  summary: OfferSummary[];
-};
 //? CREATE TENDER
 export const createTender = async (req: Request, res: Response) => {
   const tenderData = req.body;
@@ -89,7 +26,6 @@ export const createTender = async (req: Request, res: Response) => {
     workforce: [],
     materials: [],
     otherExpenses: [],
-    summary: [],
   };
 
   const transaction: Transaction = await db.transaction();
@@ -125,7 +61,7 @@ export const createTender = async (req: Request, res: Response) => {
 
     tender.materials = report.dataValues.material.map(
       (item: MaterialReportType) => ({
-        description:  item.material,
+        description: item.material,
         unit: item.unit,
         quantity: item.quantity,
         unitCost: 0,
@@ -135,6 +71,7 @@ export const createTender = async (req: Request, res: Response) => {
         totalValue: 0,
       })
     );
+    
 
     const newTender = await Tender.create(tender, {
       transaction,
