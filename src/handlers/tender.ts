@@ -14,22 +14,47 @@ export type MaterialReportType = {
   unit: string;
 };
 
-type MaterialType = {
-  material: string;
+export type SupplyType = {
+  description: string;
   unit: string;
   quantity: number;
   unitCost: number;
-  totalCost: number;
+  partialCost: number;
   profit: number;
   profitAmount: number;
+  totalValue: number;
 };
-type WorkforceType = {
+
+type LaborType = {
   role: string;
   workers: number;
+  shiftType: string;
   rate: number;
-  workshift: number;
+  shiftCount: number;
+  partialCost: number;
   profit: number;
   profitAmount: number;
+  totalValue: number;
+};
+
+type OtherExpenses = {
+  description: string;
+  shiftType: string;
+  unit: string;
+  amount: number;
+  unitCost: number;
+  partialCost: number;
+  profit: number;
+  profitAmount: number;
+  totalValue: number;
+};
+
+export type OfferSummary = {
+  materials: number;
+  preparation: number;
+  day: number;
+  night: number;
+  total: number;
 };
 
 type Tendertype = {
@@ -42,8 +67,10 @@ type Tendertype = {
   createdBy: string;
   reportId: number;
   ref: string;
-  workforce: WorkforceType[];
-  material: MaterialType[];
+  workforce: LaborType[];
+  materials: SupplyType[];
+  otherExpenses: OtherExpenses[];
+  summary: OfferSummary[];
 };
 //? CREATE TENDER
 export const createTender = async (req: Request, res: Response) => {
@@ -60,7 +87,9 @@ export const createTender = async (req: Request, res: Response) => {
     reportId: tenderData.reportId,
     ref: "",
     workforce: [],
-    material: [],
+    materials: [],
+    otherExpenses: [],
+    summary: [],
   };
 
   const transaction: Transaction = await db.transaction();
@@ -84,22 +113,26 @@ export const createTender = async (req: Request, res: Response) => {
       (item: WorkforceReportType) => ({
         role: item.role,
         workers: 0,
+        shiftType: "day",
         rate: 0,
-        workshift: item.workshift,
+        shiftCount: item.workshift,
+        partialCost: 0,
         profit: 0,
         profitAmount: 0,
+        totalValue: 0,
       })
     );
 
-    tender.material = report.dataValues.material.map(
+    tender.materials = report.dataValues.material.map(
       (item: MaterialReportType) => ({
-        material: item.material,
+        description:  item.material,
         unit: item.unit,
         quantity: item.quantity,
         unitCost: 0,
-        totalCost: 0,
+        partialCost: 0,
         profit: 0,
         profitAmount: 0,
+        totalValue: 0,
       })
     );
 
@@ -184,7 +217,7 @@ export const updateTender = async (req: Request, res: Response) => {
     const updatedTender = await tender.update(tenderData);
     res.status(200).json({ data: updatedTender });
   } catch (error) {
-    console.error("Error al actualizar la cotización:", error.message);
+    console.error("Error al actualizar la cotización", error.message);
     const err = new Error("Error al actualizar la cotización");
     res.status(500).json({ error: err.message });
   }

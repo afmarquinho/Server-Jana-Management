@@ -11,6 +11,8 @@ import Report from "./Report.model";
 
 @Table({ tableName: "tenders" })
 class Tender extends Model {
+
+  @Default(null)
   @Column({
     type: DataType.STRING(100),
     allowNull: true,
@@ -58,31 +60,36 @@ class Tender extends Model {
     allowNull: false,
   })
   createdBy: string;
-
+  
+  @Default(null)
   @Column({
     type: DataType.STRING(100),
     allowNull: true,
   })
   reviewedBy: string;
 
+  @Default(null)
   @Column({
     type: DataType.DATE,
     allowNull: true,
   })
   date: Date;
 
+  @Default(null)
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
   leadTime: string;
 
+  @Default(null)
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
   paymentMethod: string;
 
+  @Default(null)
   @Column({
     type: DataType.STRING,
     allowNull: true,
@@ -111,10 +118,13 @@ class Tender extends Model {
   workforce: {
     role: string;
     workers: number;
+    shiftType: string;
     rate: number;
-    workshift: number;
+    shiftCount: number;
+    partialCost: number;
     profit: number;
     profitAmount: number;
+    totalValue: number;
   }[];
 
   @Default([])
@@ -122,13 +132,46 @@ class Tender extends Model {
     type: DataType.ARRAY(DataType.JSON),
     allowNull: true,
   })
-  material: {
-    material: string;
+  materials: {
+    description: string;
     unit: string;
     quantity: number;
     unitCost: number;
-    totalCost: number;
+    partialCost: number;
+    profit: number;
+    profitAmount: number;
+    totalValue: number;
   }[];
+
+  @Default([])
+  @Column({
+    type: DataType.ARRAY(DataType.JSON),
+    allowNull: true,
+  })
+  otherExpenses: {
+    description: string;
+  shiftType: string;
+  unit: string;
+  amount: number;
+  unitCost: number;
+  partialCost: number;
+  profit: number;
+  profitAmount: number;
+  totalValue: number;
+  }[];
+  
+  @Default({})
+  @Column({
+    type: DataType.JSON,
+    allowNull: true,
+  })
+  summary: {
+    materials: number;
+    preparation: number;
+    day: number;
+    night: number;
+    total:number
+  };
 
   @Default([])
   @Column({
@@ -137,11 +180,11 @@ class Tender extends Model {
   })
   notes: string[];
 
+  @Default("draft")
   @Column({
     type: DataType.ENUM,
     values: ["draft", "review", "approved", "rejected", "submitted"],
     allowNull: false,
-    defaultValue: "draft",
   })
   status: string;
 
