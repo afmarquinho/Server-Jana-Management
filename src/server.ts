@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import colors from "colors";
 import swaggerUi from "swagger-ui-express";
 import db from "./config/db";
@@ -8,6 +8,10 @@ import morgan from "morgan";
 import reportRouter from "./router/reportRouter";
 import userRouter from "./router/userRouter";
 import tenderRouter from "./router/tenderRouter";
+import uploadRouter from "./router/uploadRouter";
+import multer from "multer";
+import path from "path";
+import  fs  from "node:fs";
 
 // * CONNECT TO DATA BASE
 export const connectDB = async () => {
@@ -26,6 +30,10 @@ export const connectDB = async () => {
 connectDB();
 
 const server = express();
+
+const upload = multer({
+  dest: "uploads/",
+});
 
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
@@ -50,10 +58,17 @@ server.use(cors(corsOptions));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
+//* ROUTE TO ACCESS TO IMAGE FROM DIRECTORY
+server.use("/api/uploads", express.static(path.join(__dirname, "../uploads")));
+
+server.use("/api/uploads", upload.single("profilePicture"), uploadRouter)
+
+
+
+// Cambia la ruta de carga de imágenes para que no esté bajo /api/uploads
 server.use("/api/reports", reportRouter);
 server.use("/api/users", userRouter);
 server.use("/api/tenders", tenderRouter);
-
 server.get("/api", (req, res) => {
   res.json({ msg: "Desde API" });
 });

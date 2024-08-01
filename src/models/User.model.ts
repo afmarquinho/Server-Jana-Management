@@ -1,4 +1,4 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, Default, Model, Table } from 'sequelize-typescript';
 
 @Table({
   tableName: 'users',
@@ -26,7 +26,7 @@ class User extends Model<User> {
     type: DataType.BIGINT,
     allowNull: false,
   })
-  ID: number;
+  userId: number;
 
   @Column({
     type: DataType.DATE,
@@ -53,10 +53,22 @@ class User extends Model<User> {
   email: string;
 
   @Column({
-    type: DataType.ENUM('gerente', 'ing cotizacion', 'ing obra', 'administrador'),
+    type: DataType.ENUM('gerente', 'ingCotizacion', 'ingObra', 'admin'),
     allowNull: false,
   })
-  rol: string;
+  role: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  jobTitle: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  profilePicture: string; 
 
   @Column({
     type: DataType.STRING,
@@ -68,7 +80,15 @@ class User extends Model<User> {
     type: DataType.STRING,
     allowNull: false,
   })
-  password: string; // Asegúrate de que password esté definido correctamente como STRING
+  password: string;
+
+  @Default(true)
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+  })
+  active: boolean;
+
 
  }
 

@@ -26,7 +26,7 @@ export const userValidationSchema = [
     .notEmpty()
     .withMessage("Seleccione un tipo de identificación de la lista"),
 
-  body("ID")
+  body("userId")
     .isNumeric()
     .withMessage("La identificación debe ser un número válido")
     .notEmpty()
@@ -69,15 +69,21 @@ export const userValidationSchema = [
     .isEmail()
     .withMessage("Ingrese un correo electrónico válido"),
 
-  body("jobTitle")
-    .isIn(["gerente", "ing cotizacion", "ing obra", "administrador"])
+  body("role")
+    .isIn(["gerente", "ingCotizacion", "ingObra", "admin"])
     .withMessage("Seleccione un cargo de la lista")
     .notEmpty()
     .withMessage("Seleccione un cargo válido"),
 
+  body("jobTitle")
+    .isString()
+    .withMessage("Ingrese un cargo válido")
+    .notEmpty()
+    .withMessage("El campo 'cargo' no puede estar vacío"),
+
   body("user")
     .isString()
-    .withMessage("Ingrese una usuario válido")
+    .withMessage("Ingrese un usuario válido")
     .notEmpty()
     .withMessage("El campo 'usuario' no puede estar vacío"),
 
