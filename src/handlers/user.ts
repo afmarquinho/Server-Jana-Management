@@ -13,10 +13,13 @@ export const createUser = async (req: Request, res: Response) => {
     user.password = hashedPassword;
 
     const newUser = await User.create(user);
-    res.status(201).json({ data: newUser });
+    const getUser = await User.findByPk(newUser.dataValues.id, {
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    res.status(201).json({ data: getUser });
   } catch (error) {
     console.error("Error al crear el usuario:", error.message);
-    res.status(500).json({ error: "Error al crear el usuario" });
+    res.status(500).json({ error: error.message || "Error del servidor" });
   }
 };
 
@@ -84,29 +87,61 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-//? UPDATE PASSWORD
+//? UPDATE PASSWORD -PATCH
 export const updatePassword = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { password } = req.body;
 
- try {
-  const user = await User.findByPk(id);
-  if (!user) {
-    return res.status(404).json({ error: "Usuario no encontrado" });
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    await user.update({ password: hashedPassword });
+
+    const updatedUser = await User.findByPk(id, {
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    res
+      .status(200)
+      .json({
+        message: "Contraseña actualizada correctamente",
+        data: updatedUser,
+      });
+      
+  } catch (error) {
+    console.error("Error al actualizar la contraseña:", error.message);
+    const err = new Error("Error al actualizar la contraseña");
+    res.status(500).json({ error: err.message });
   }
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
-  await user.update({ password: hashedPassword });
-  res.status(200).json({ message: "Contraseña actualizada correctamente" });
+};
 
- } catch (error) {
-  console.error("Error al actualizar la contraseña:", error.message);
-  const err = new Error("Error al actualizar la contraseña");
-  res.status(500).json({ error: err.message });
- }
+//? UPDATE USERPROFILE -PATCH
+export const updateUserProfile = async (req: Request, res: Response) => {
+  const { id } = req.params;
 
-}
+  try {
+    const userToUpdate = await User.findByPk(id);
+    if (!userToUpdate) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
 
+    await userToUpdate.update(req.body);
+
+    const getUser = await User.findByPk(id, {
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    res
+      .status(200)
+      .json({ message: "Usuario actualizado correctamente", data: getUser });
+  } catch (error) {
+    console.error("Error al actualizar el usuario:", error.message);
+    const err = new Error("Error al actualizar el usuario");
+    res.status(500).json({ error: err.message });
+  }
+};
 
 //? DELETE USER
 
@@ -159,5 +194,25 @@ export const authenticate = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Error en la autenticación:", error);
     res.status(500).json({ error: "Error en la autenticación" });
+  }
+};
+
+//? UPDATE STATUS -PATCH
+export const updateUserStatus = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { active } = req.body;
+
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+    await user.update({ active });
+
+    res.status(200).json({ message: "Estado actualizado correctamente" });
+  } catch (error) {
+    console.error("Error al actualizar el estado:", error.message);
+    const err = new Error("Error al actualizar el estado");
+    res.status(500).json({ error: err.message });
   }
 };
