@@ -54,9 +54,10 @@ class Tender extends Model {
   })
   customerCity: string;
 
+  @Default(null)
   @Column({
     type: DataType.STRING(100),
-    allowNull: false,
+    allowNull: true,
   })
   createdBy: string;
 
@@ -114,7 +115,7 @@ class Tender extends Model {
     type: DataType.ARRAY(DataType.JSON),
     allowNull: true,
   })
-  workforce: {
+  workforces: {
     role: string;
     workers: number;
     shiftType: string;

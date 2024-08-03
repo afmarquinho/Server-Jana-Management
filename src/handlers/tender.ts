@@ -11,7 +11,8 @@ import {
 
 //? CREATE TENDER
 export const createTender = async (req: Request, res: Response) => {
-  const tenderData = req.body;
+  const { id } = req.params;
+  const tenderId = Number(id);
 
   let tender: Tendertype = {
     name: "",
@@ -20,10 +21,9 @@ export const createTender = async (req: Request, res: Response) => {
     email: "",
     phoneNumber: "",
     customerCity: "",
-    createdBy: tenderData.createdBy,
-    reportId: tenderData.reportId,
+    reportId: tenderId,
     ref: "",
-    workforce: [],
+    workforces: [],
     materials: [],
     otherExpenses: [],
   };
@@ -31,11 +31,15 @@ export const createTender = async (req: Request, res: Response) => {
   const transaction: Transaction = await db.transaction();
 
   try {
-    const report = await Report.findByPk(tenderData.reportId);
+    const report = await Report.findByPk(tenderId);
 
     if (!report) {
       console.error("Report no encontrado");
       return res.status(404).json({ error: "Reporte no encontrado" });
+    }
+    if (!report.dataValues.processed) {
+      console.error("El reporte debe estar procesado");
+      return res.status(400).json({ error: "Reporte no procesado" });
     }
 
     tender.name = report.dataValues.name;
@@ -45,7 +49,7 @@ export const createTender = async (req: Request, res: Response) => {
     tender.phoneNumber = report.dataValues.phoneNumber;
     tender.customerCity = report.dataValues.customerCity;
     tender.ref = report.dataValues.ref;
-    tender.workforce = report.dataValues.workforce.map(
+    tender.workforces = report.dataValues.workforces.map(
       (item: WorkforceReportType) => ({
         role: item.role,
         workers: 0,
@@ -59,7 +63,7 @@ export const createTender = async (req: Request, res: Response) => {
       })
     );
 
-    tender.materials = report.dataValues.material.map(
+    tender.materials = report.dataValues.materials.map(
       (item: MaterialReportType) => ({
         description: item.material,
         unit: item.unit,
@@ -71,8 +75,6 @@ export const createTender = async (req: Request, res: Response) => {
         totalValue: 0,
       })
     );
-    
-
     const newTender = await Tender.create(tender, {
       transaction,
     });
@@ -100,10 +102,6 @@ export const getTenders = async (req: Request, res: Response) => {
     const tenders = await Tender.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
-    if (tenders.length === 0) {
-      console.error("No se encontraron cotizaciones");
-      return res.status(404).json({ error: "No se encontraron cotizaciones" });
-    }
     res.status(200).json({ data: tenders });
   } catch (error) {
     console.error("Error al obtener cotizaciones", error.message);

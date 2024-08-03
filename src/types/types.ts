@@ -64,10 +64,9 @@ export type Tendertype = {
   email: string;
   phoneNumber: string;
   customerCity: string;
-  createdBy: string;
   reportId: number;
   ref: string;
-  workforce: LaborType[];
+  workforces: LaborType[];
   materials: SupplyType[];
   otherExpenses: OtherExpenses[];
   comments?: CommentsTypes[];

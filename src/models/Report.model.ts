@@ -63,8 +63,6 @@ class Report extends Model {
   })
   description: string;
 
-
-
   @Column({
     type: DataType.DATE,
     allowNull: false,
@@ -95,7 +93,7 @@ class Report extends Model {
     type: DataType.ARRAY(DataType.JSON),
     allowNull: false,
   })
-  workforce: {
+  workforces: {
     role: string;
     workshift: number;
   }[];
@@ -104,7 +102,7 @@ class Report extends Model {
     type: DataType.ARRAY(DataType.JSON),
     allowNull: false,
   })
-  material: {
+  materials: {
     material: string;
     quantity: number;
     unit: string;

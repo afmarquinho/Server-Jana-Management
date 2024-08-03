@@ -1,6 +1,12 @@
 import { body } from "express-validator";
 
 export const reportValidationSchema = [
+  body("name")
+    .isString()
+    .withMessage("El nombre del proyecto debe ser válido")
+    .notEmpty()
+    .withMessage("El nombre del proyecto no debe estar vacío"),
+
   body("visitDate")
     .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
     .withMessage("Digite una fecha de visita válida")
@@ -13,11 +19,17 @@ export const reportValidationSchema = [
     })
     .withMessage("Digite una fecha de visita válida"),
 
-  body("customerName")
-    .isString()
-    .withMessage("El nombre de la cotización debe ser válido")
+  body("dueDate")
+    .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
+    .withMessage("La fecha de entrega de entrega debe ser válida")
     .notEmpty()
-    .withMessage("El nombre de la cotización no debe estar vacío"),
+    .withMessage("El campo 'fecha de entrega' no puede estar vacío")
+    .custom((value) => {
+      const today: Date = new Date();
+      const dueDate: Date = new Date(value);
+      return dueDate >= today;
+    })
+    .withMessage("La fecha de entrega debe ser válida"),
 
   body("customerName")
     .isString()
@@ -49,63 +61,41 @@ export const reportValidationSchema = [
     .isEmail()
     .withMessage("Ingrese un correo electrónico válido"),
 
-  body("dueDate")
-    .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
-    .withMessage("La fecha de entrega de entrega debe ser válida")
-    .notEmpty()
-    .withMessage("El campo 'fecha de entrega' no puede estar vacío")
-    .custom((value) => {
-      const today: Date = new Date();
-      const dueDate: Date = new Date(value);
-      return dueDate >= today;
-    })
-    .withMessage("La fecha de entrega debe ser válida"),
-
-  body("priority")
-    .isIn(["low", "medium", "high"])
-    .withMessage("La prioridad debe ser Alta, Media o Baja"),
-
   body("description")
     .isString()
     .withMessage("Ingrese una texto válido para la descripción")
     .notEmpty()
     .withMessage("El campo descripción no puede estar vacío"),
 
-  body("ref")
-    .isString()
-    .withMessage("Ingrese una referencia válida")
-    .notEmpty()
-    .withMessage("El campo 'referencia' no puede estar vacío"),
-
-  body("workforce")
+  body("workforces")
     .isArray({ min: 1 })
     .withMessage("Debe haber al menos 1 mano de obra"),
 
-  body("workforce.*.role")
+  body("workforces.*.role")
     .isString()
-    .withMessage("El nombre de la mano de obra es inválido")
+    .withMessage("Ningún nombre de la mano de obra puede ser incorrecto")
     .notEmpty()
-    .withMessage("El nombre de la mano de obra no puede estar vacío"),
+    .withMessage("Ningún nombre de mano de obra  puede estar vacío"),
 
-  body("workforce.*.workshift")
+  body("workforces.*.workshift")
     .isInt()
-    .withMessage("El turno debe ser un número válido")
+    .withMessage("El turno de la mano de obra debe ser un número válido")
     .notEmpty()
     .withMessage("El campo 'turno' no puede estar vacío")
     .custom((value) => value > 0)
     .withMessage("El turno debe ser un número válido"),
 
-  body("material")
+  body("materials")
     .isArray({ min: 1 })
     .withMessage("Debe haber al menos 1 material"),
 
-  body("material.*.material")
+  body("materials.*.material")
     .isString()
     .withMessage("El nombre del material es inválido")
     .notEmpty()
     .withMessage("El nombre del material no debe estar vacío"),
 
-  body("material.*.quantity")
+  body("materials.*.quantity")
     .isNumeric()
     .withMessage("Digite una cantidad válida para cada material")
     .notEmpty()
@@ -113,18 +103,30 @@ export const reportValidationSchema = [
     .custom((value) => value > 0)
     .withMessage("La cantidad de material debe ser válida"),
 
-  body("material.*.unit")
+    body("materials.*.unit")
     .isString()
     .withMessage("Digite una unidad del material válida")
     .notEmpty()
     .withMessage("La unidad de material no puede estar vacía"),
+  
+      body("priority")
+    .isIn(["low", "medium", "high"])
+    .withMessage("La prioridad debe ser Alta, Media o Baja"),
 
-  body("createdBy")
+    body("createdBy")
     .isString()
     .withMessage("El nombre del usuario debe ser correcto")
     .notEmpty()
     .withMessage("El nombre del usuario no debe estar vacío"),
-];
+    
+    body("ref")
+    .isString()
+    .withMessage("Ingrese una referencia válida")
+    .notEmpty()
+    .withMessage("El campo 'referencia' no puede estar vacío"),
+  ];
+
+
 
 //? NOTA EXPLICATORIA DE LA VALIDACIÓN DEL ARRAY DE OBJETOS.
 //* 'workforce.*.workforce':
