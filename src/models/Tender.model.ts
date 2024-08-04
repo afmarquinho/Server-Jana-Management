@@ -11,6 +11,7 @@ import Report from "./Report.model";
 
 @Table({ tableName: "tenders" })
 class Tender extends Model {
+  
   @Default(null)
   @Column({
     type: DataType.STRING(100),
