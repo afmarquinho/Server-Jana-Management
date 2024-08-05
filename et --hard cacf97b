@@ -1,0 +1,32 @@
+[33mcacf97b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mafmarquinhos[m[33m)[m correción de logs y actualizacion del modelos, de metarial a materials
+[33m500c781[m[33m ([m[1;31morigin/afmarquinhos[m[33m)[m se actualiza el modelo y el controlador para la actualización de contraseñas
+[33m46ae7b8[m Se actualiza el modelo y controlador para admitir los comentarios
+[33m2f9e086[m Se modifica el modelo y controlador
+[33mee2be28[m Modificaciones en el modelo y el controlador de tender
+[33ma5b0b53[m Se hacen modificaciones al modelo y el controlador de tender
+[33md154d1c[m Corrección de logs y middleware para validación de fecha de visita en PATCH de Reports
+[33mdd53ac6[m Ok, todas las validaciones y pruebas funcionales
+[33m1b47278[m Se realizan pruebas a la api usuarios
+[33m1f6f198[m Modifica controlador de reporte, validaciones,
+[33maae9a59[m contralador de usuarios , ok
+[33m3a32014[m se crea el rutero de usuarios
+[33m43300e8[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Se inicia Jest
+[33m24f4aa9[m se inicia el testeo con jest y sipertest
+[33mb9e757f[m se inicia el testeo con jest y sipertest
+[33mf2232b7[m ok
+[33m60da707[m Merge branch 'afmarquinhos'
+[33m000c745[m todos los endpoints ok
+[33m554a928[m ok corregido rutas
+[33mfc8a721[m se resuelven los conflictos de las ramas
+[33mb934b19[m SE CREA EL CRUD DE REPORTES
+[33ma167fce[m Merge pull request #3 from afmarquinho/afmarquinhos
+[33me64691e[m Se actualiza el modelo y las validaciones
+[33m12bf592[m Se actualiza a formato fecha el visitDate y dueDate tanto del modelo como en la validación. Se confifura cors
+[33m3dcc230[m Merge pull request #2 from afmarquinho/afmarquinhos
+[33m7511a4f[m Se hace las pruebas con jest, y se inicia la documentación con swagger
+[33m876dd61[m se crea el test con sus instrucciones
+[33mfe59583[m Merge pull request #1 from afmarquinho/afmarquinhos
+[33mca92a5c[m Se crea el CRUD de todo el informe de visita a obra
+[33m9fe725d[m  se crea el controlador de crear reporte y se hace la validación
+[33m5d9aa4a[m Se crea el modelo de la bd
+[33m2888823[m primer commit

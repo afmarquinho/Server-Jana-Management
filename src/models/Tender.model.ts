@@ -6,17 +6,21 @@ import {
   Table,
   BelongsTo,
   Default,
+  HasOne,
 } from "sequelize-typescript";
 import Report from "./Report.model";
+import Consecutive from "./Consecutive.model";
+
 
 @Table({ tableName: "tenders" })
 class Tender extends Model {
+
   @Default(null)
   @Column({
     type: DataType.STRING(100),
     allowNull: true,
   })
-  tender: string;
+  code: string;
 
   @Column({
     type: DataType.STRING(100),
@@ -54,9 +58,10 @@ class Tender extends Model {
   })
   customerCity: string;
 
+  @Default(null)
   @Column({
     type: DataType.STRING(100),
-    allowNull: false,
+    allowNull: true,
   })
   createdBy: string;
 
@@ -114,7 +119,7 @@ class Tender extends Model {
     type: DataType.ARRAY(DataType.JSON),
     allowNull: true,
   })
-  workforce: {
+  workforces: {
     role: string;
     workers: number;
     shiftType: string;
@@ -218,8 +223,19 @@ class Tender extends Model {
   })
   reportId: number;
 
+  @Default(0)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  rev: number;
+
   @BelongsTo(() => Report)
   report: Report;
+
+  @HasOne(() => Consecutive)
+  consecutive: Consecutive;
+  
 }
 
 export default Tender;
