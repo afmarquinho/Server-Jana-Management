@@ -79,7 +79,7 @@ export const createTender = async (req: Request, res: Response) => {
       transaction,
     });
     await report.update(
-      { tenderID: newTender.id, close: true },
+      { tenderID: newTender.id },
       { transaction }
     );
     await transaction.commit();

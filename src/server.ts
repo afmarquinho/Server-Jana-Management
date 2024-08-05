@@ -9,6 +9,7 @@ import reportRouter from "./router/reportRouter";
 import userRouter from "./router/userRouter";
 import tenderRouter from "./router/tenderRouter";
 import uploadRouter from "./router/uploadRouter";
+import consecutiveRouter from "./router/consecutiveRouter";
 import multer from "multer";
 import path from "path";
 import  fs  from "node:fs";
@@ -65,7 +66,7 @@ server.use("/api/uploads", upload.single("profilePicture"), uploadRouter)
 
 
 
-// Cambia la ruta de carga de imágenes para que no esté bajo /api/uploads
+server.use("/api/consecutives",consecutiveRouter );
 server.use("/api/reports", reportRouter);
 server.use("/api/users", userRouter);
 server.use("/api/tenders", tenderRouter);
