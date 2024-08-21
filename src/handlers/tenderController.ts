@@ -6,6 +6,7 @@ import db from "../config/db";
 import {
   MaterialReportType,
   Tendertype,
+
   WorkforceReportType,
 } from "../types/types";
 
@@ -138,7 +139,7 @@ export const getTender = async (req: Request, res: Response) => {
 //? UPDATE TENDER BY ID
 export const updateTender = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const tenderData = req.body;
+  const tenderData= req.body;
   try {
     const tender = await Tender.findByPk(id);
     if (!tender) {

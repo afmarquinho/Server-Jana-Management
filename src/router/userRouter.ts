@@ -5,38 +5,56 @@ import {
   getUserById,
   updateUser,
   deleteUser,
-  authenticate,
+  login,
   updatePassword,
   updateUserProfile,
   updateUserStatus,
-} from "../handlers/user";
+} from "../handlers/userController";
 import { param } from "express-validator";
 import handleInputErros from "../middlewares/handleInputErros";
 import { userValidationSchema } from "../middlewares/userValidationSchema";
 import { passwordValidationSchema } from "../middlewares/passwordValidationSchema";
+import { authValidationSchema } from "../middlewares/authValidatonSchema";
+import { authenticate } from "../middlewares/auth";
 
 const router = Router();
 
 //* ROUTING
 
-router.get("/", getUsers);
-router.get("/:id", getUserById);
+router.get("/", authenticate, getUsers);
+router.get("/:id", authenticate, getUserById);
 
-router.post("/", userValidationSchema, handleInputErros, createUser);
-router.put("/:id", userValidationSchema, handleInputErros, updateUser);
+router.post(
+  "/",
+  authenticate,
+  userValidationSchema,
+  handleInputErros,
+  createUser
+);
+router.put(
+  "/:id",
+  authenticate,
+  userValidationSchema,
+  handleInputErros,
+  updateUser
+);
 
 router.patch(
   "/:id",
+  authenticate,
   passwordValidationSchema,
   handleInputErros,
   updatePassword
 );
 
-router.patch("/update/:id", updateUserProfile);
-router.patch("/update-status/:id", updateUserStatus);
+router.patch("/update/:id", authenticate, updateUserProfile);
+router.patch("/update-status/:id", authenticate, updateUserStatus);
 
-router.post("/login", authenticate);
+router.post("/login", authValidationSchema, handleInputErros, login);
+router.post("/restore-session", authenticate, (req, res) => {
+  res.status(200).json({ data: req.user });
+});
 
-router.delete("/:id", deleteUser);
+router.delete("/:id", authenticate, deleteUser);
 
 export default router;
