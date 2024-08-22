@@ -19,6 +19,8 @@ import { authenticate } from "../middlewares/auth";
 
 const router = Router();
 
+//! IMPORTANTE HABILTAR EL AUTHENTICATE EN EL POST DE CREAR USUARIO, LO DESACTIVÉ PARA PODER TESTEAR EL ENDPOINT
+
 //* ROUTING
 
 router.get("/", authenticate, getUsers);
@@ -26,7 +28,7 @@ router.get("/:id", authenticate, getUserById);
 
 router.post(
   "/",
-  authenticate,
+  //authenticate,
   userValidationSchema,
   handleInputErros,
   createUser

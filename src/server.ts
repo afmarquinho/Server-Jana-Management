@@ -70,9 +70,12 @@ server.use("/api/consecutives",consecutiveRouter );
 server.use("/api/reports", reportRouter);
 server.use("/api/users", userRouter);
 server.use("/api/tenders", tenderRouter);
+
+//? ENDPOINT PARA EL TEST
 server.get("/api", (req, res) => {
   res.json({ msg: "Desde API" });
 });
+
 
 //Docs
 // server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
