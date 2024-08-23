@@ -1,7 +1,9 @@
 import { Router } from "express";
-import { getProfilePic, uploadPicture } from "../handlers/uploads";
+import { getProfilePic, uploadPicture } from "../handlers/uploadsController";
+import { authenticate } from "../middlewares/auth";
 
 const router = Router();
+router.use(authenticate)
 
 router.get("/profile-picture/:id", getProfilePic);
 

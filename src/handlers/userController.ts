@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import User from "../models/User.model";
 import bcrypt from "bcryptjs";
+import { generateJWT } from "../utils/jwt";
+import { UserTokenType } from "../types/types";
 
 //TODO: CREAR EL CONTROLADOR PARA ACTUALIZAR LA CONTRASEÑA
 
-//? CREATE USER
+//* CREATE USER
 export const createUser = async (req: Request, res: Response) => {
   const user = req.body;
   try {
@@ -23,7 +25,7 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 
-//? GET USERS
+//* GET USERS
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const users = await User.findAll({
@@ -41,7 +43,7 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-//? GET USER
+//* GET USER BY ID
 export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -49,7 +51,6 @@ export const getUserById = async (req: Request, res: Response) => {
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
     if (!user) {
-      console.error("Usuario no encontrado");
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
     res.status(200).json({ data: user });
@@ -60,7 +61,7 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
-//? UPDATE USER
+//* UPDATE USER
 export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params;
   const userData = req.body;
@@ -87,7 +88,7 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-//? UPDATE PASSWORD -PATCH
+//* UPDATE PASSWORD -PATCH
 export const updatePassword = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { password } = req.body;
@@ -104,13 +105,10 @@ export const updatePassword = async (req: Request, res: Response) => {
     const updatedUser = await User.findByPk(id, {
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
-    res
-      .status(200)
-      .json({
-        message: "Contraseña actualizada correctamente",
-        data: updatedUser,
-      });
-      
+    res.status(200).json({
+      message: "Contraseña actualizada correctamente",
+      data: updatedUser,
+    });
   } catch (error) {
     console.error("Error al actualizar la contraseña:", error.message);
     const err = new Error("Error al actualizar la contraseña");
@@ -118,7 +116,7 @@ export const updatePassword = async (req: Request, res: Response) => {
   }
 };
 
-//? UPDATE USERPROFILE -PATCH
+//* UPDATE USERPROFILE -PATCH
 export const updateUserProfile = async (req: Request, res: Response) => {
   const { id } = req.params;
 
@@ -143,7 +141,7 @@ export const updateUserProfile = async (req: Request, res: Response) => {
   }
 };
 
-//? DELETE USER
+//* DELETE USER
 
 export const deleteUser = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -165,39 +163,51 @@ export const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-//? AUTHENTICATON
-export const authenticate = async (req: Request, res: Response) => {
-  const { user, password } = req.body;
-
-  if (!user || !password) {
-    return res
-      .status(400)
-      .json({ error: "Usuario y contraseña son requeridos" });
-  }
+//* AUTHENTICATON
+export const login = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
 
   try {
-    const foundUser = await User.findOne({ where: { user } });
+    const user = await User.findOne({ where: { email } });
 
-    if (!foundUser) {
-      return res.status(404).json({ error: "Usuario no registrado" });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ error: "Acceso inválido, revise el email y contraseña" });
     }
     const isPasswordValid = await bcrypt.compare(
       password,
-      foundUser.dataValues.password
+      user.dataValues.password
     );
 
     if (!isPasswordValid) {
-      return res.status(401).json({ error: "Contraseña incorrecta" });
+      return res
+        .status(401)
+        .json({ error: "Acceso inválido, revise el email y contraseña" });
     }
+    const payload = {
+      id: user.dataValues.id,
+      user: user.dataValues.user,
+      name: user.dataValues.name,
+      lastName: user.dataValues.lastName,
+      active: user.dataValues.active,
+      role: user.dataValues.role,
+      profilePicture: user.dataValues.profilePicture,
+    };
 
-    res.json({ data: foundUser });
+    const token = generateJWT(payload);
+
+    res.status(200).json({
+      data: payload,
+      token,
+    });
   } catch (error) {
     console.error("Error en la autenticación:", error);
     res.status(500).json({ error: "Error en la autenticación" });
   }
 };
 
-//? UPDATE STATUS -PATCH
+//* UPDATE STATUS -PATCH
 export const updateUserStatus = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { active } = req.body;

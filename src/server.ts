@@ -19,9 +19,9 @@ export const connectDB = async () => {
   try {
     await db.authenticate();
     db.sync();
-    console.log(
-      colors.bgGreen("Connection to bbdd has been established successfully.")
-    );
+    // console.log(
+    //   colors.bgGreen("Connection to bbdd has been established successfully.")
+    // );
   } catch (error) {
     console.log(error);
     console.log(colors.bgRed("Unable to connect to the database."));
@@ -70,9 +70,12 @@ server.use("/api/consecutives",consecutiveRouter );
 server.use("/api/reports", reportRouter);
 server.use("/api/users", userRouter);
 server.use("/api/tenders", tenderRouter);
+
+//? ENDPOINT PARA EL TEST
 server.get("/api", (req, res) => {
   res.json({ msg: "Desde API" });
 });
+
 
 //Docs
 // server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

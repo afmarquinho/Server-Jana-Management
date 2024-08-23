@@ -1,7 +1,7 @@
-import { Column, DataType, Default, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, Default, Model, Table } from "sequelize-typescript";
 
 @Table({
-  tableName: 'users',
+  tableName: "users",
 })
 class User extends Model<User> {
   @Column({
@@ -17,14 +17,15 @@ class User extends Model<User> {
   lastName: string;
 
   @Column({
-    type: DataType.ENUM('cc', 'passport', 'ce'),
+    type: DataType.ENUM("cc", "passport", "ce"),
     allowNull: false,
   })
   idType: string;
-  
+
   @Column({
     type: DataType.BIGINT,
     allowNull: false,
+    unique: true,
   })
   userId: number;
 
@@ -49,11 +50,12 @@ class User extends Model<User> {
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    unique: true,
   })
   email: string;
 
   @Column({
-    type: DataType.ENUM('gerente', 'ingCotizacion', 'ingObra', 'admin'),
+    type: DataType.ENUM("gerente", "ingCotizacion", "ingObra", "admin"),
     allowNull: false,
   })
   role: string;
@@ -68,7 +70,7 @@ class User extends Model<User> {
     type: DataType.STRING,
     allowNull: true,
   })
-  profilePicture: string; 
+  profilePicture: string;
 
   @Column({
     type: DataType.STRING,
@@ -88,8 +90,6 @@ class User extends Model<User> {
     allowNull: false,
   })
   active: boolean;
-
-
- }
+}
 
 export default User;

@@ -71,3 +71,13 @@ export type Tendertype = {
   otherExpenses: OtherExpenses[];
   comments?: CommentsTypes[];
 };
+
+export type UserTokenType = {
+  id?: number;
+  user: string;
+  name: string;
+  lastName: string;
+  active: boolean;
+  role: string;
+  profilePicture: string;
+};

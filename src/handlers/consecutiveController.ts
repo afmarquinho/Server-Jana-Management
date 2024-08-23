@@ -18,8 +18,9 @@ const createConsecutive = async (req: Request, res: Response) => {
     }
 
     // 2. Check if the Tender already has a Consecutive
-    if (tender.dataValues.code) {  // Cambiado para usar tender.code en lugar de tender.dataValues.consecutive
-      return res.status(400).json({ error: "El consecutivo ya existe" });
+    if (tender.dataValues.code) {
+      // Cambiado para usar tender.code en lugar de tender.dataValues.consecutive
+      return  res.status(201).json({ data: tender.dataValues.code });
     }
 
     // 3. Generate the Consecutive code
@@ -41,13 +42,11 @@ const createConsecutive = async (req: Request, res: Response) => {
       tenderId: tender.id,
     });
 
-
-
     // 5. Update the Tender with the new Consecutive code
-   await tender.update({ code });
+    await tender.update({ code });
 
     // 6. Send the response
-    res.status(201).json(newConsecutive);
+    res.status(201).json({ data: newConsecutive.dataValues.code });
   } catch (error) {
     console.error("Error al generar el consecutivo:", error);
     res.status(500).json({ error: "Error al generar el consecutivo" });

@@ -5,11 +5,14 @@ import {
   getTender,
   updateTender,
   deleteTender,
-} from "../handlers/tender";
+} from "../handlers/tenderController";
 import handleInputErros from "../middlewares/handleInputErros";
 import { tenderValidationSchema } from "../middlewares/tenderValidationSchema";
+import { authenticate } from "../middlewares/auth";
 
 const router = Router();
+
+router.use(authenticate)
 
 router.post("/:id", createTender);
 router.put("/:id", updateTender);
