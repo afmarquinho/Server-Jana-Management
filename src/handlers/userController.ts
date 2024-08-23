@@ -43,7 +43,7 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-//* GET USER
+//* GET USER BY ID
 export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -51,7 +51,6 @@ export const getUserById = async (req: Request, res: Response) => {
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
     if (!user) {
-      console.error("Usuario no encontrado");
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
     res.status(200).json({ data: user });
@@ -168,11 +167,13 @@ export const deleteUser = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
-    try {
+  try {
     const user = await User.findOne({ where: { email } });
-    
+
     if (!user) {
-      return res.status(404).json({ error: "Acceso inválido, revise el email y contraseña" });
+      return res
+        .status(404)
+        .json({ error: "Acceso inválido, revise el email y contraseña" });
     }
     const isPasswordValid = await bcrypt.compare(
       password,
@@ -180,25 +181,26 @@ export const login = async (req: Request, res: Response) => {
     );
 
     if (!isPasswordValid) {
-      return res.status(401).json({ error: "Acceso inválido, revise el email y contraseña"  });
+      return res
+        .status(401)
+        .json({ error: "Acceso inválido, revise el email y contraseña" });
     }
-    const payload ={
+    const payload = {
       id: user.dataValues.id,
       user: user.dataValues.user,
       name: user.dataValues.name,
-      lastName :user.dataValues.lastName,
+      lastName: user.dataValues.lastName,
       active: user.dataValues.active,
       role: user.dataValues.role,
       profilePicture: user.dataValues.profilePicture,
-    }
-    
-    const token = generateJWT(payload)
-   
+    };
+
+    const token = generateJWT(payload);
+
     res.status(200).json({
       data: payload,
-      token
+      token,
     });
-
   } catch (error) {
     console.error("Error en la autenticación:", error);
     res.status(500).json({ error: "Error en la autenticación" });

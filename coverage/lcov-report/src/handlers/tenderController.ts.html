@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/models/Tender.model.ts</title>
+    <title>Code coverage report for src/handlers/tenderController.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> Tender.model.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/handlers</a> tenderController.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">14.6% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>35/35</span>
+                <span class='fraction'>13/89</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">9.52% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>34/34</span>
+                <span class='fraction'>8/84</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -263,153 +263,9 @@
 <a name='L198'></a><a href='#L198'>198</a>
 <a name='L199'></a><a href='#L199'>199</a>
 <a name='L200'></a><a href='#L200'>200</a>
-<a name='L201'></a><a href='#L201'>201</a>
-<a name='L202'></a><a href='#L202'>202</a>
-<a name='L203'></a><a href='#L203'>203</a>
-<a name='L204'></a><a href='#L204'>204</a>
-<a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a>
-<a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a>
-<a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a>
-<a name='L213'></a><a href='#L213'>213</a>
-<a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a>
-<a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a>
-<a name='L222'></a><a href='#L222'>222</a>
-<a name='L223'></a><a href='#L223'>223</a>
-<a name='L224'></a><a href='#L224'>224</a>
-<a name='L225'></a><a href='#L225'>225</a>
-<a name='L226'></a><a href='#L226'>226</a>
-<a name='L227'></a><a href='#L227'>227</a>
-<a name='L228'></a><a href='#L228'>228</a>
-<a name='L229'></a><a href='#L229'>229</a>
-<a name='L230'></a><a href='#L230'>230</a>
-<a name='L231'></a><a href='#L231'>231</a>
-<a name='L232'></a><a href='#L232'>232</a>
-<a name='L233'></a><a href='#L233'>233</a>
-<a name='L234'></a><a href='#L234'>234</a>
-<a name='L235'></a><a href='#L235'>235</a>
-<a name='L236'></a><a href='#L236'>236</a>
-<a name='L237'></a><a href='#L237'>237</a>
-<a name='L238'></a><a href='#L238'>238</a>
-<a name='L239'></a><a href='#L239'>239</a>
-<a name='L240'></a><a href='#L240'>240</a>
-<a name='L241'></a><a href='#L241'>241</a>
-<a name='L242'></a><a href='#L242'>242</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L201'></a><a href='#L201'>201</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -420,372 +276,393 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
-  Column,
-  DataType,
-  ForeignKey,
-  Model,
-  Table,
-  BelongsTo,
-  Default,
-  HasOne,
-} from "sequelize-typescript";
-import Report from "./Report.model";
-import Consecutive from "./Consecutive.model";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response } from "express";
+import Report from "../models/Report.model";
+import Tender from "../models/Tender.model";
+import { Transaction } from "sequelize";
+import db from "../config/db";
+import {
+  MaterialReportType,
+  Tendertype,
 &nbsp;
+  WorkforceReportType,
+} from "../types/types";
 &nbsp;
-@Table({ tableName: "tenders" })
-class Tender extends Model {
+//? CREATE TENDER
+export const createTender = <span class="fstat-no" title="function not covered" >async </span>(req: Request, res: Response) =&gt; {
+  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+  const tenderId = <span class="cstat-no" title="statement not covered" >Number(id);</span>
 &nbsp;
-  @Default(null)
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: true,
-  })
-  code: string;
-&nbsp;
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: false,
-  })
-  name: string;
-&nbsp;
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: false,
-  })
-  customerName: string;
-&nbsp;
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: false,
-  })
-  contactName: string;
-&nbsp;
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: false,
-  })
-  email: string;
-&nbsp;
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: false,
-  })
-  phoneNumber: string;
-&nbsp;
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: false,
-  })
-  customerCity: string;
-&nbsp;
-  @Default(null)
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: true,
-  })
-  createdBy: string;
-&nbsp;
-  @Default(null)
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: true,
-  })
-  reviewedBy: string;
-&nbsp;
-  @Default(null)
-  @Column({
-    type: DataType.DATE,
-    allowNull: true,
-  })
-  date: Date;
-&nbsp;
-  @Default(null)
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  leadTime: string;
-&nbsp;
-  @Default(null)
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  paymentMethod: string;
-&nbsp;
-  @Default(null)
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  proposalValidity: string;
-&nbsp;
-  @Default([])
-  @Column({
-    type: DataType.ARRAY(DataType.JSON),
-    allowNull: true,
-  })
-  description: {
-    item: string;
-    description: string;
-    unit: string;
-    quantity: number;
-    unitValue: number;
-    totalValue: number;
-  }[];
-&nbsp;
-  @Default([])
-  @Column({
-    type: DataType.ARRAY(DataType.JSON),
-    allowNull: true,
-  })
-  workforces: {
-    role: string;
-    workers: number;
-    shiftType: string;
-    rate: number;
-    shiftCount: number;
-    partialCost: number;
-    profit: number;
-    profitAmount: number;
-    totalValue: number;
-  }[];
-&nbsp;
-  @Default([])
-  @Column({
-    type: DataType.ARRAY(DataType.JSON),
-    allowNull: true,
-  })
-  materials: {
-    description: string;
-    unit: string;
-    quantity: number;
-    unitCost: number;
-    partialCost: number;
-    profit: number;
-    profitAmount: number;
-    totalValue: number;
-  }[];
-&nbsp;
-  @Default([])
-  @Column({
-    type: DataType.ARRAY(DataType.JSON),
-    allowNull: true,
-  })
-  otherExpenses: {
-    description: string;
-    shiftType: string;
-    unit: string;
-    amount: number;
-    unitCost: number;
-    partialCost: number;
-    profit: number;
-    profitAmount: number;
-    totalValue: number;
-  }[];
-&nbsp;
-  @Default({
-    materials: 0,
-    preparation: 0,
-    day: 0,
-    night: 0,
-    total: 0,
-  })
-  @Column({
-    type: DataType.JSON,
-    allowNull: true,
-  })
-  summary: {
-    materials: number;
-    preparation: number;
-    day: number;
-    night: number;
-    total: number;
+  let tender: Tendertype = <span class="cstat-no" title="statement not covered" >{</span>
+    name: "",
+    customerName: "",
+    contactName: "",
+    email: "",
+    phoneNumber: "",
+    customerCity: "",
+    reportId: tenderId,
+    ref: "",
+    workforces: [],
+    materials: [],
+    otherExpenses: [],
   };
 &nbsp;
-  @Default([])
-  @Column({
-    type: DataType.ARRAY(DataType.JSON),
-    allowNull: true,
-  })
-  notes: string[];
+  const transaction: Transaction = <span class="cstat-no" title="statement not covered" >await db.transaction();</span>
 &nbsp;
-  @Default("draft")
-  @Column({
-    type: DataType.ENUM,
-    values: ["draft", "review", "approved", "rejected", "submitted"],
-    allowNull: false,
-  })
-  status: string;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const report = <span class="cstat-no" title="statement not covered" >await Report.findByPk(tenderId);</span>
 &nbsp;
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  ref: string;
-&nbsp;
-  @Default([])
-  @Column({
-    type: DataType.ARRAY(DataType.JSON),
-    allowNull: true,
-  })
-  comments: [
-    {
-      author: string;
-      comment: string;
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!report) {</span>
+<span class="cstat-no" title="statement not covered" >      console.error("Report no encontrado");</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: "Reporte no encontrado" });</span>
     }
-  ];
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!report.dataValues.processed) {</span>
+<span class="cstat-no" title="statement not covered" >      console.error("El reporte debe estar procesado");</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({ error: "Reporte no procesado" });</span>
+    }
 &nbsp;
-  @ForeignKey(() =&gt; Report)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  reportId: number;
+<span class="cstat-no" title="statement not covered" >    tender.name = report.dataValues.name;</span>
+<span class="cstat-no" title="statement not covered" >    tender.customerName = report.dataValues.customerName;</span>
+<span class="cstat-no" title="statement not covered" >    tender.contactName = report.dataValues.contactName;</span>
+<span class="cstat-no" title="statement not covered" >    tender.email = report.dataValues.email;</span>
+<span class="cstat-no" title="statement not covered" >    tender.phoneNumber = report.dataValues.phoneNumber;</span>
+<span class="cstat-no" title="statement not covered" >    tender.customerCity = report.dataValues.customerCity;</span>
+<span class="cstat-no" title="statement not covered" >    tender.ref = report.dataValues.ref;</span>
+<span class="cstat-no" title="statement not covered" >    tender.workforces = report.dataValues.workforces.map(</span>
+<span class="fstat-no" title="function not covered" >      (i</span>tem: WorkforceReportType) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+        role: item.role,
+        workers: 0,
+        shiftType: "day",
+        rate: 0,
+        shiftCount: item.workshift,
+        partialCost: 0,
+        profit: 0,
+        profitAmount: 0,
+        totalValue: 0,
+      })
+    );
 &nbsp;
-  @Default(0)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  rev: number;
+<span class="cstat-no" title="statement not covered" >    tender.materials = report.dataValues.materials.map(</span>
+<span class="fstat-no" title="function not covered" >      (i</span>tem: MaterialReportType) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+        description: item.material,
+        unit: item.unit,
+        quantity: item.quantity,
+        unitCost: 0,
+        partialCost: 0,
+        profit: 0,
+        profitAmount: 0,
+        totalValue: 0,
+      })
+    );
+    const newTender = <span class="cstat-no" title="statement not covered" >await Tender.create(tender, {</span>
+      transaction,
+    });
+<span class="cstat-no" title="statement not covered" >    await report.update(</span>
+      { tenderID: newTender.id },
+      { transaction }
+    );
+<span class="cstat-no" title="statement not covered" >    await transaction.commit();</span>
 &nbsp;
-  @BelongsTo(() =&gt; Report)
-  report: Report;
+    const tenderRes = <span class="cstat-no" title="statement not covered" >await Tender.findByPk(newTender.id, {</span>
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
 &nbsp;
-  @HasOne(() =&gt; Consecutive)
-  consecutive: Consecutive;
-  
-}
+<span class="cstat-no" title="statement not covered" >    res.status(201).json({ data: tenderRes });</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    await transaction.rollback();</span>
+<span class="cstat-no" title="statement not covered" >    console.error("Error al crear la cotización:", error.message);</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: "Error al crear la cotización" });</span>
+  }
+};
 &nbsp;
-export default Tender;
+//? GET TENDERS
+export const getTenders = <span class="fstat-no" title="function not covered" >async </span>(req: Request, res: Response) =&gt; {
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const tenders = <span class="cstat-no" title="statement not covered" >await Tender.findAll({</span>
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+<span class="cstat-no" title="statement not covered" >    res.status(200).json({ data: tenders });</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error("Error al obtener cotizaciones", error.message);</span>
+    const err = <span class="cstat-no" title="statement not covered" >new Error("Error al obtener cotizaciones");</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: err.message });</span>
+  }
+};
+&nbsp;
+//?GET TENDER
+export const getTender = <span class="fstat-no" title="function not covered" >async </span>(req: Request, res: Response) =&gt; {
+  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const tender = <span class="cstat-no" title="statement not covered" >await Tender.findByPk(id, {</span>
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: [
+        { model: Report, attributes: { exclude: ["createdAt", "updatedAt"] } },
+      ],
+    });
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!tender) {</span>
+<span class="cstat-no" title="statement not covered" >      res</span>
+        .status(404)
+        .json({ error: "Cotización no encontrada por parámetro inválido" });
+<span class="cstat-no" title="statement not covered" >      console.error("Cotización no encontrada por parámetro inválido");</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    res.status(200).json({ data: tender });</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error("Error al obtener cotización", error.message);</span>
+    const err = <span class="cstat-no" title="statement not covered" >new Error("Error al obtener cotización");</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: err.message });</span>
+  }
+};
+&nbsp;
+//? UPDATE TENDER BY ID
+export const updateTender = <span class="fstat-no" title="function not covered" >async </span>(req: Request, res: Response) =&gt; {
+  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+  const tenderData= <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const tender = <span class="cstat-no" title="statement not covered" >await Tender.findByPk(id);</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!tender) {</span>
+<span class="cstat-no" title="statement not covered" >      res</span>
+        .status(404)
+        .json({ error: "Cotización no encontrada por parámetro inválido" });
+<span class="cstat-no" title="statement not covered" >      console.error("Cotización no encontrada por parámetro inválido");</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    const updatedTender = <span class="cstat-no" title="statement not covered" >await tender.update(tenderData);</span>
+<span class="cstat-no" title="statement not covered" >    res.status(200).json({ data: updatedTender });</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error("Error al actualizar la cotización", error.message);</span>
+    const err = <span class="cstat-no" title="statement not covered" >new Error("Error al actualizar la cotización");</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: err.message });</span>
+  }
+};
+&nbsp;
+//? DELETE TENDER
+export const deleteTender = <span class="fstat-no" title="function not covered" >async </span>(req: Request, res: Response) =&gt; {
+  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    //* Find tender by ID
+    const tender = <span class="cstat-no" title="statement not covered" >await Tender.findByPk(id);</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!tender) {</span>
+<span class="cstat-no" title="statement not covered" >      console.error("Cotización no encontrada por parámetro inválido");</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: "Cotización no encontrada" });</span>
+    }
+&nbsp;
+    //* Find the report linked tender
+    const report = <span class="cstat-no" title="statement not covered" >await Report.findOne({ where: { tenderID: id } });</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!report) {</span>
+<span class="cstat-no" title="statement not covered" >      console.error("Reporte no encontrado");</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: "Reporte no encontrado" });</span>
+    }
+&nbsp;
+    //* Update the report to unlike the tender
+<span class="cstat-no" title="statement not covered" >    await report.update({ tenderID: null });</span>
+&nbsp;
+    //* Delete the tender
+<span class="cstat-no" title="statement not covered" >    await tender.destroy();</span>
+&nbsp;
+    //* successful answer
+<span class="cstat-no" title="statement not covered" >    res.status(200).json({ data: "Cotización eliminada correctamente" });</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error("Error al eliminar la cotización:", error.message);</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ error: "Error al eliminar la cotización" });</span>
+  }
+};
+&nbsp;
+//! NOTA: PARA CASOS EN QUE INTERACTUÉ CON VARIAS BASES DE DATOS DESDE UNA FUNCIÓIN
+//? Utilizamos "TRASACTION" para asegurar que todas las operaciones de creación
+//? (crear Report, Workforce, y Material) se realicen de manera atómica. Esto significa
+//? que si una de las operaciones falla, todas las operaciones se revertirán,
+//? asegurando la integridad de los datos.
+//? Si cae en el rollback eso deshace las operaciones de la bbdd hechas arriba.
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

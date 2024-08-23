@@ -19,9 +19,9 @@ export const connectDB = async () => {
   try {
     await db.authenticate();
     db.sync();
-    console.log(
-      colors.bgGreen("Connection to bbdd has been established successfully.")
-    );
+    // console.log(
+    //   colors.bgGreen("Connection to bbdd has been established successfully.")
+    // );
   } catch (error) {
     console.log(error);
     console.log(colors.bgRed("Unable to connect to the database."));

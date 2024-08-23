@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
@@ -158,7 +158,13 @@
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
 <a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,14 +206,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -281,7 +293,7 @@ export const userValidationSchema = [
     .notEmpty()
     .withMessage("Seleccione un tipo de identificación de la lista"),
 &nbsp;
-  body("ID")
+  body("userId")
     .isNumeric()
     .withMessage("La identificación debe ser un número válido")
     .notEmpty()
@@ -299,8 +311,8 @@ export const userValidationSchema = [
       const birthDate = new Date(value);
       let age = today.getFullYear() - birthDate.getFullYear();
       const m = today.getMonth() - birthDate.getMonth();
-      if (m &lt; 0 || (m === 0 &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >today.getDate() &lt; birthDate.getDate())</span>) {
-        age--;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (m &lt; 0 || (m === 0 &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >today.getDate() &lt; birthDate.getDate())</span>) {
+<span class="cstat-no" title="statement not covered" >        age--;</span>
       }
       return age &gt;= 18;
     })
@@ -324,15 +336,21 @@ export const userValidationSchema = [
     .isEmail()
     .withMessage("Ingrese un correo electrónico válido"),
 &nbsp;
-  body("jobTitle")
-    .isIn(["gerente", "ing cotizacion", "ing obra", "administrador"])
+  body("role")
+    .isIn(["gerente", "ingCotizacion", "ingObra", "admin"])
     .withMessage("Seleccione un cargo de la lista")
     .notEmpty()
     .withMessage("Seleccione un cargo válido"),
 &nbsp;
+  body("jobTitle")
+    .isString()
+    .withMessage("Ingrese un cargo válido")
+    .notEmpty()
+    .withMessage("El campo 'cargo' no puede estar vacío"),
+&nbsp;
   body("user")
     .isString()
-    .withMessage("Ingrese una usuario válido")
+    .withMessage("Ingrese un usuario válido")
     .notEmpty()
     .withMessage("El campo 'usuario' no puede estar vacío"),
 &nbsp;
@@ -355,7 +373,7 @@ export const userValidationSchema = [
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-11T05:11:34.804Z
+                at 2024-08-23T02:04:03.859Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

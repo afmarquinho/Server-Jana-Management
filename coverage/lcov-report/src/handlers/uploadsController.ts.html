@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/router/userRouter.ts</title>
+    <title>Code coverage report for src/handlers/uploadsController.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/router</a> userRouter.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/handlers</a> uploadsController.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95% </span>
+                <span class="strong">18.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/20</span>
+                <span class='fraction'>7/38</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95% </span>
+                <span class="strong">13.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/20</span>
+                <span class='fraction'>5/36</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -129,138 +129,144 @@
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Router } from "express";
-import {
-  createUser,
-  getUsers,
-  getUserById,
-  updateUser,
-  deleteUser,
-  login,
-  updatePassword,
-  updateUserProfile,
-  updateUserStatus,
-} from "../handlers/userController";
-import handleInputErros from "../middlewares/handleInputErros";
-import { userValidationSchema } from "../middlewares/userValidationSchema";
-import { passwordValidationSchema } from "../middlewares/passwordValidationSchema";
-import { authValidationSchema } from "../middlewares/authValidatonSchema";
-import { authenticate } from "../middlewares/auth";
-import { param } from "express-validator";
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Request, Response } from "express";
+import User from "../models/User.model";
+import fs from "node:fs";
+import path from "path";
 &nbsp;
-const router = Router();
+function <span class="fstat-no" title="function not covered" >saveImage(</span>file, userId: number, userName: string) {
+  const uniqueSuffix = <span class="cstat-no" title="statement not covered" >`${userId}-${userName}`;</span>
+  const fileExtension = <span class="cstat-no" title="statement not covered" >path.extname(file.originalname);</span>
+  const newFileName = <span class="cstat-no" title="statement not covered" >`${uniqueSuffix}${fileExtension}`;</span>
+  const newPath = <span class="cstat-no" title="statement not covered" >`uploads/${newFileName}`;</span>
+<span class="cstat-no" title="statement not covered" >  fs.renameSync(file.path, newPath);</span>
+<span class="cstat-no" title="statement not covered" >  return newPath;</span>
+}
 &nbsp;
-//! IMPORTANTE HABILTAR EL AUTHENTICATE EN EL POST DE CREAR USUARIO, LO DESACTIVÉ PARA PODER TESTEAR EL ENDPOINT
-// TODO: INCLUIR EL PARAM EN PARA VALIDAR
+export const uploadPicture = <span class="fstat-no" title="function not covered" >async </span>(req: Request, res: Response) =&gt; {
+  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const user = <span class="cstat-no" title="statement not covered" >await User.findByPk(id);</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!user) {</span>
+<span class="cstat-no" title="statement not covered" >      console.error("Usuario no encontrado");</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: "Usuario no encontrado" });</span>
+    }
 &nbsp;
-//* ROUTING
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!req.file) {</span>
+<span class="cstat-no" title="statement not covered" >      console.error("Archivo no encontrado en la solicitud");</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({ error: "Archivo no encontrado" });</span>
+    }
 &nbsp;
-router.post(
-  "/",
-  //authenticate,
-  userValidationSchema,
-  handleInputErros,
-  createUser
-);
+    const filePath = <span class="cstat-no" title="statement not covered" >saveImage(</span>
+      req.file,
+      user.dataValues.userId,
+      user.dataValues.name
+    );
+<span class="cstat-no" title="statement not covered" >    await user.update({ profilePicture: filePath });</span>
+<span class="cstat-no" title="statement not covered" >    res.send({ msg: "Archivo subido con éxito", filePath });</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error(</span>
+      "Error al actualizar la imagen de perfil del usuario:",
+      error.message
+    );
+<span class="cstat-no" title="statement not covered" >    res.status(500).send("Error al actualizar la imagen de perfil del usuario");</span>
+  }
+};
 &nbsp;
-router.post("/login", authValidationSchema, handleInputErros, login);
+export const getProfilePic = <span class="fstat-no" title="function not covered" >async </span>(req: Request, res: Response) =&gt; {
+  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
 &nbsp;
-router.get("/", authenticate, getUsers);
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    // Busca el usuario en la base de datos
+    const user = <span class="cstat-no" title="statement not covered" >await User.findByPk(id);</span>
 &nbsp;
-router.get("/:id", authenticate, getUserById);
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!user) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: "Usuario no encontrado" });</span>
+    }
 &nbsp;
-router.put(
-  "/:id",
-  authenticate,
-  userValidationSchema,
-  handleInputErros,
-  updateUser
-);
+    // Verifica si el usuario tiene una imagen de perfil
+    const profilePicture = <span class="cstat-no" title="statement not covered" >user.profilePicture;</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!profilePicture) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: "Imagen de perfil no encontrada" });</span>
+    }
 &nbsp;
-router.patch(
-  "/:id",
-  authenticate,
-  passwordValidationSchema,
-  handleInputErros,
-  updatePassword
-);
-&nbsp;
-router.patch("/update/:id", authenticate, updateUserProfile);
-router.patch("/update-status/:id", authenticate, updateUserStatus);
-&nbsp;
-router.post("/restore-session", authenticate, <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >  res.status(200).json({ data: req.user });</span>
-});
-&nbsp;
-router.delete("/:id", authenticate, deleteUser);
-&nbsp;
-export default router;
+    // Devuelve la URL de la imagen de perfil
+<span class="cstat-no" title="statement not covered" >    res.json({ data: `/api/uploads/${path.basename(profilePicture)}` });</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error("Error al obtener la imagen de perfil:", error.mes);</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).send("Error al obtener la imagen de perfil");</span>
+  }
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
