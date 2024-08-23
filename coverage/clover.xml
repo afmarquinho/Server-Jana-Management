@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1724378643987" clover="3.2.0">
-  <project timestamp="1724378643987" name="All files">
-    <metrics statements="569" coveredstatements="292" conditionals="44" coveredconditionals="11" methods="47" coveredmethods="17" elements="660" coveredelements="320" complexity="0" loc="569" ncloc="569" packages="7" files="24" classes="24"/>
+<coverage generated="1724431466018" clover="3.2.0">
+  <project timestamp="1724431466018" name="All files">
+    <metrics statements="572" coveredstatements="350" conditionals="44" coveredconditionals="14" methods="47" coveredmethods="23" elements="663" coveredelements="387" complexity="0" loc="572" ncloc="572" packages="7" files="25" classes="25"/>
     <package name="src">
       <metrics statements="37" coveredstatements="34" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="3"/>
       <file name="server.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\server.ts">
@@ -27,9 +27,9 @@
         <line num="33" count="2" type="stmt"/>
         <line num="35" count="2" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
-        <line num="41" count="14" type="stmt"/>
-        <line num="42" count="14" type="cond" truecount="2" falsecount="2"/>
-        <line num="43" count="14" type="stmt"/>
+        <line num="41" count="31" type="stmt"/>
+        <line num="42" count="31" type="cond" truecount="2" falsecount="2"/>
+        <line num="43" count="31" type="stmt"/>
         <line num="45" count="0" type="stmt"/>
         <line num="56" count="2" type="stmt"/>
         <line num="59" count="2" type="stmt"/>
@@ -57,7 +57,7 @@
       </file>
     </package>
     <package name="src.handlers">
-      <metrics statements="323" coveredstatements="68" conditionals="29" coveredconditionals="2" methods="27" coveredmethods="4"/>
+      <metrics statements="323" coveredstatements="118" conditionals="29" coveredconditionals="4" methods="27" coveredmethods="9"/>
       <file name="consecutiveController.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\handlers\consecutiveController.ts">
         <metrics statements="23" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="2" count="2" type="stmt"/>
@@ -278,7 +278,7 @@
         <line num="66" count="0" type="stmt"/>
       </file>
       <file name="userController.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\handlers\userController.ts">
-        <metrics statements="116" coveredstatements="43" conditionals="11" coveredconditionals="2" methods="9" coveredmethods="4"/>
+        <metrics statements="116" coveredstatements="93" conditionals="11" coveredconditionals="4" methods="9" coveredmethods="9"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
@@ -314,61 +314,61 @@
         <line num="59" count="1" type="stmt"/>
         <line num="60" count="1" type="stmt"/>
         <line num="65" count="2" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="71" count="0" type="stmt"/>
         <line num="72" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
         <line num="87" count="0" type="stmt"/>
         <line num="92" count="2" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="94" count="0" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="97" count="0" type="stmt"/>
-        <line num="98" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="101" count="0" type="stmt"/>
-        <line num="102" count="0" type="stmt"/>
-        <line num="103" count="0" type="stmt"/>
-        <line num="105" count="0" type="stmt"/>
-        <line num="108" count="0" type="stmt"/>
-        <line num="113" count="0" type="stmt"/>
-        <line num="114" count="0" type="stmt"/>
-        <line num="115" count="0" type="stmt"/>
+        <line num="93" count="3" type="stmt"/>
+        <line num="94" count="3" type="stmt"/>
+        <line num="96" count="3" type="stmt"/>
+        <line num="97" count="3" type="stmt"/>
+        <line num="98" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="102" count="1" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="113" count="1" type="stmt"/>
+        <line num="114" count="1" type="stmt"/>
+        <line num="115" count="1" type="stmt"/>
         <line num="120" count="2" type="stmt"/>
-        <line num="121" count="0" type="stmt"/>
-        <line num="123" count="0" type="stmt"/>
-        <line num="124" count="0" type="stmt"/>
-        <line num="125" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="121" count="1" type="stmt"/>
+        <line num="123" count="1" type="stmt"/>
+        <line num="124" count="1" type="stmt"/>
+        <line num="125" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="126" count="0" type="stmt"/>
-        <line num="129" count="0" type="stmt"/>
-        <line num="131" count="0" type="stmt"/>
-        <line num="134" count="0" type="stmt"/>
+        <line num="129" count="1" type="stmt"/>
+        <line num="131" count="1" type="stmt"/>
+        <line num="134" count="1" type="stmt"/>
         <line num="138" count="0" type="stmt"/>
         <line num="139" count="0" type="stmt"/>
         <line num="140" count="0" type="stmt"/>
         <line num="146" count="2" type="stmt"/>
-        <line num="147" count="0" type="stmt"/>
-        <line num="148" count="0" type="stmt"/>
-        <line num="149" count="0" type="stmt"/>
-        <line num="150" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="151" count="0" type="stmt"/>
-        <line num="152" count="0" type="stmt"/>
-        <line num="155" count="0" type="stmt"/>
-        <line num="156" count="0" type="stmt"/>
-        <line num="160" count="0" type="stmt"/>
-        <line num="161" count="0" type="stmt"/>
-        <line num="162" count="0" type="stmt"/>
+        <line num="147" count="3" type="stmt"/>
+        <line num="148" count="3" type="stmt"/>
+        <line num="149" count="3" type="stmt"/>
+        <line num="150" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="151" count="1" type="stmt"/>
+        <line num="152" count="1" type="stmt"/>
+        <line num="155" count="1" type="stmt"/>
+        <line num="156" count="1" type="stmt"/>
+        <line num="160" count="1" type="stmt"/>
+        <line num="161" count="1" type="stmt"/>
+        <line num="162" count="1" type="stmt"/>
         <line num="167" count="2" type="stmt"/>
         <line num="168" count="2" type="stmt"/>
         <line num="170" count="2" type="stmt"/>
@@ -384,42 +384,42 @@
         <line num="205" count="0" type="stmt"/>
         <line num="206" count="0" type="stmt"/>
         <line num="211" count="2" type="stmt"/>
-        <line num="212" count="0" type="stmt"/>
-        <line num="213" count="0" type="stmt"/>
-        <line num="215" count="0" type="stmt"/>
-        <line num="216" count="0" type="stmt"/>
-        <line num="217" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="212" count="1" type="stmt"/>
+        <line num="213" count="1" type="stmt"/>
+        <line num="215" count="1" type="stmt"/>
+        <line num="216" count="1" type="stmt"/>
+        <line num="217" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="218" count="0" type="stmt"/>
-        <line num="220" count="0" type="stmt"/>
-        <line num="222" count="0" type="stmt"/>
+        <line num="220" count="1" type="stmt"/>
+        <line num="222" count="1" type="stmt"/>
         <line num="224" count="0" type="stmt"/>
         <line num="225" count="0" type="stmt"/>
         <line num="226" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.middlewares">
-      <metrics statements="54" coveredstatements="37" conditionals="11" coveredconditionals="7" methods="8" coveredmethods="3"/>
+      <metrics statements="56" coveredstatements="43" conditionals="11" coveredconditionals="8" methods="8" coveredmethods="3"/>
       <file name="auth.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\middlewares\auth.ts">
-        <metrics statements="19" coveredstatements="14" conditionals="6" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <metrics statements="19" coveredstatements="18" conditionals="6" coveredconditionals="5" methods="1" coveredmethods="1"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
-        <line num="20" count="5" type="stmt"/>
-        <line num="21" count="5" type="cond" truecount="0" falsecount="1"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="25" count="5" type="stmt"/>
-        <line num="27" count="5" type="stmt"/>
-        <line num="28" count="5" type="stmt"/>
-        <line num="29" count="5" type="cond" truecount="3" falsecount="0"/>
-        <line num="30" count="5" type="stmt"/>
-        <line num="46" count="5" type="stmt"/>
-        <line num="47" count="5" type="cond" truecount="1" falsecount="1"/>
-        <line num="48" count="5" type="stmt"/>
+        <line num="20" count="22" type="stmt"/>
+        <line num="21" count="22" type="cond" truecount="1" falsecount="0"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="25" count="19" type="stmt"/>
+        <line num="27" count="19" type="stmt"/>
+        <line num="28" count="19" type="stmt"/>
+        <line num="29" count="18" type="cond" truecount="3" falsecount="0"/>
+        <line num="30" count="18" type="stmt"/>
+        <line num="46" count="18" type="stmt"/>
+        <line num="47" count="18" type="cond" truecount="1" falsecount="1"/>
+        <line num="48" count="18" type="stmt"/>
         <line num="50" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="58" count="5" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="58" count="18" type="stmt"/>
       </file>
       <file name="authValidatonSchema.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\middlewares\authValidatonSchema.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -438,10 +438,10 @@
         <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="2" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
-        <line num="5" count="9" type="stmt"/>
-        <line num="6" count="9" type="cond" truecount="1" falsecount="0"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
+        <line num="5" count="17" type="stmt"/>
+        <line num="6" count="17" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
       </file>
       <file name="passwordValidationSchema.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\middlewares\passwordValidationSchema.ts">
@@ -462,17 +462,22 @@
         <line num="85" count="0" type="stmt"/>
         <line num="103" count="0" type="stmt"/>
       </file>
+      <file name="statusValidationSchema.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\middlewares\statusValidationSchema.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
       <file name="userValidationSchema.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\middlewares\userValidationSchema.ts">
         <metrics statements="9" coveredstatements="8" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
-        <line num="43" count="4" type="stmt"/>
-        <line num="44" count="4" type="stmt"/>
-        <line num="45" count="4" type="stmt"/>
-        <line num="46" count="4" type="stmt"/>
-        <line num="47" count="4" type="cond" truecount="2" falsecount="2"/>
+        <line num="43" count="5" type="stmt"/>
+        <line num="44" count="5" type="stmt"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="46" count="5" type="stmt"/>
+        <line num="47" count="5" type="cond" truecount="2" falsecount="2"/>
         <line num="48" count="0" type="stmt"/>
-        <line num="50" count="4" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
       </file>
     </package>
     <package name="src.models">
@@ -576,7 +581,7 @@
       </file>
     </package>
     <package name="src.router">
-      <metrics statements="61" coveredstatements="60" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="62" coveredstatements="62" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="consecutiveRouter.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\router\consecutiveRouter.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
@@ -631,7 +636,7 @@
         <line num="12" count="2" type="stmt"/>
       </file>
       <file name="userRouter.ts" path="C:\PROYECTOS\JANA\Server-Jana-Management\src\router\userRouter.ts">
-        <metrics statements="20" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="21" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
@@ -639,19 +644,20 @@
         <line num="15" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="49" count="2" type="stmt"/>
-        <line num="57" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
         <line num="58" count="2" type="stmt"/>
         <line num="60" count="2" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
-        <line num="66" count="2" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="77" count="2" type="stmt"/>
       </file>
     </package>
     <package name="src.utils">

@@ -20,7 +20,7 @@ export const authenticate = async (
   const bearer = req.headers.authorization;
   if (!bearer) {
     const error = new Error("No autortizado");
-    return res.status(401).json({ data: error.message });
+    return res.status(401).json({ error: error.message });
   }
   const [, token] = bearer.split(" ");
 
