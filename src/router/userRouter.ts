@@ -16,6 +16,7 @@ import { passwordValidationSchema } from "../middlewares/passwordValidationSchem
 import { authValidationSchema } from "../middlewares/authValidatonSchema";
 import { authenticate } from "../middlewares/auth";
 import { param } from "express-validator";
+import { statusValidationSchema } from "../middlewares/statusValidationSchema";
 
 const router = Router();
 
@@ -55,12 +56,22 @@ router.patch(
 );
 
 router.patch("/update/:id", authenticate, updateUserProfile);
-router.patch("/update-status/:id", authenticate, updateUserStatus);
+
+router.patch(
+  "/update-status/:id",
+  authenticate,
+  statusValidationSchema,
+  handleInputErros,
+  updateUserStatus
+);
 
 router.post("/restore-session", authenticate, (req, res) => {
   res.status(200).json({ data: req.user });
 });
 
 router.delete("/:id", authenticate, deleteUser);
+
+
+
 
 export default router;
