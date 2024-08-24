@@ -33,8 +33,8 @@ Jana es una aplicación PERN para la gestión de licitaciones. Este repositorio 
 
 1. **Clonar el Repositorio:**
    ```bash
-   git clone https://github.com/tu-usuario/jana-backend.git
-   cd jana-backend
+   git clone https://github.com/afmarquinho/Server-Jana-Management.git
+   cd Server-Jana-Management
    ```
 2. **Instalar Dependencias:**
    ```bash
