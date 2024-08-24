@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import colors from "colors";
 import swaggerUi from "swagger-ui-express";
-import db from "./config/db";
 import swaggerSpec from "./config/swagger";
+import db from "./config/db";
 import cors, { CorsOptions } from "cors";
 import morgan from "morgan";
 import reportRouter from "./router/reportRouter";
@@ -20,11 +20,11 @@ export const connectDB = async () => {
     await db.authenticate();
     db.sync();
     // console.log(
-    //   colors.bgGreen("Connection to bbdd has been established successfully.")
+    //   colors.bgGreen("Conexión establecida a la base de datos")
     // );
   } catch (error) {
-    console.log(error);
-    console.log(colors.bgRed("Unable to connect to the database."));
+    //console.log(error);
+    console.log(colors.bgRed("Hubo un error al conectarse a la base de datos"));
   }
 };
 
@@ -42,7 +42,7 @@ const corsOptions: CorsOptions = {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(new Error("No permitido por CORS"));
     }
   },
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -71,13 +71,8 @@ server.use("/api/reports", reportRouter);
 server.use("/api/users", userRouter);
 server.use("/api/tenders", tenderRouter);
 
-//? ENDPOINT PARA EL TEST
-server.get("/api", (req, res) => {
-  res.json({ msg: "Desde API" });
-});
-
-
 //Docs
-// server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 export default server;

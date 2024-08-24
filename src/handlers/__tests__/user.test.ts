@@ -1,6 +1,7 @@
 import request from "supertest";
 import server from "../../server";
 
+
 let token: string = "";
 //! IMPORTANTE: PUEDO HACER LA VALIDACIÓN TAN EXAUTIVA COMO YO QUIERA
 describe("POST /api/users", () => {
@@ -29,6 +30,31 @@ describe("POST /api/users", () => {
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("errors");
     expect(response.body.errors).toHaveLength(4);
+    expect(response.status).not.toBe(201);
+  });
+
+  test("should display an error for an under-age user", async () => {
+    const response = await request(server).post("/api/users").send({
+      name: "Juan",
+      lastName: "Pérez",
+      idType: "cc",
+      userId: 1234567890,
+      dateOfBirth: "2008-05-15",
+      address: "123 Main Street, City, Country",
+      phoneNumber: "+1234567890",
+      email: "juan.perez@correo.com",
+      role: "gerente",
+      jobTitle: "Project Manager",
+      user: "juanperez",
+      password: "securePassword123.",
+    });
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty("errors");
+    expect(response.body.errors).toBeTruthy();
+    expect(response.body.errors).toHaveLength(1);
+    expect(response.body.errors[0].msg).toBe(
+      "El usuario debe tener al menos 18 años"
+    );
     expect(response.status).not.toBe(201);
   });
 
@@ -147,9 +173,8 @@ describe("GET /api/users/:id", () => {
     const response = await request(server)
       .get(`/api/users/${userId}`)
       .set("Authorization", `Bearer ${token}`);
-    expect(response.status).toBe(500);
-    expect(response.body).toHaveProperty("error");
-    expect(response.body.error).toBe("Error al obtener usuario");
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty("errors");
   });
 
   test("should get a single user by ID", async () => {
@@ -167,7 +192,7 @@ describe("GET /api/users/:id", () => {
 });
 
 describe("PUT /api/users/:id", () => {
-  test("should display validation error messages when updating an user", async () => {
+  test("should display validation error messages when updating an empty user", async () => {
     const userId = 1;
     const response = await request(server)
       .put(`/api/users/${userId}`)
@@ -205,6 +230,7 @@ describe("PUT /api/users/:id", () => {
     expect(response.body).not.toHaveProperty("errors");
   });
 });
+
 describe("PATCH /api/users/:id", () => {
   test("should display the validation error messages because a wrong token", async () => {
     const userId = 1;
@@ -254,9 +280,8 @@ describe("PATCH /api/users/:id", () => {
       .patch(`/api/users/${userId}`)
       .set("Authorization", `Bearer ${token}`)
       .send({ password: "nuevaContrasena13@" });
-    expect(response.status).toBe(500);
-    expect(response.body).toHaveProperty("error");
-    expect(response.body.error).toBe("Error al actualizar la contraseña");
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty("errors");
 
     expect(response.body).not.toHaveProperty("data");
     expect(response.status).not.toBe(200);
