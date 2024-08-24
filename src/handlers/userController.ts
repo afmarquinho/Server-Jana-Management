@@ -9,20 +9,15 @@ import { UserTokenType } from "../types/types";
 //* CREATE USER
 export const createUser = async (req: Request, res: Response) => {
   const user = req.body;
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(user.password, salt);
-    user.password = hashedPassword;
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(user.password, salt);
+  user.password = hashedPassword;
 
-    const newUser = await User.create(user);
-    const getUser = await User.findByPk(newUser.dataValues.id, {
-      attributes: { exclude: ["createdAt", "updatedAt"] },
-    });
-    res.status(201).json({ data: getUser });
-  } catch (error) {
-    console.error("Error al crear el usuario:", error.message);
-    res.status(500).json({ error: error.message || "Error del servidor" });
-  }
+  const newUser = await User.create(user);
+  const getUser = await User.findByPk(newUser.dataValues.id, {
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+  });
+  res.status(201).json({ data: getUser });
 };
 
 //* GET USERS

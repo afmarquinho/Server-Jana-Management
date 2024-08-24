@@ -2,30 +2,30 @@ import swaggerJSDoc from "swagger-jsdoc";
 
 const options: swaggerJSDoc.Options = {
   swaggerDefinition: {
-    openapi: "3.0.0",
+    openapi: "3.0.2",
     tags: [
       {
-        name: "Reports",
-        description: "API operations related to reports",
+        name: "Users",
+        description: "API operations related to users",
       },
-    //   {
-    //     name: "Tenders",
-    //     description: "API operations related to reports",
-    //   },
-    //   {
-    //     name: "Auth",
-    //     description: "API operations related to reports",
-    //   },
+      // {
+      //   name: "Tenders",
+      //   description: "API operations related to reports",
+      // },
+      //   {
+      //     name: "Auth",
+      //     description: "API operations related to reports",
+      //   },
     ],
     info: {
       title: "REST API NODE.JS / EXPRESS / TYPESCRIPT",
       version: "1.0.0",
-      description: "API Docs for visit reports",
+      description: "API Docs for Users module",
     },
   },
-  apis: ["./src/router.ts"],
+  apis: ["./src/router/userRouter.ts"],
 };
 
-const swaggerSpec = swaggerJSDoc(options)
+const swaggerSpec = swaggerJSDoc(options);
 
-export default swaggerSpec
+export default swaggerSpec;
