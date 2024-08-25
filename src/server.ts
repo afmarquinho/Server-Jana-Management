@@ -36,9 +36,10 @@ const upload = multer({
   dest: "uploads/",
 });
 
+
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = [process.env.FRONTEND_URL]; // Lista de orígenes permitidos
+    const allowedOrigins = [process.env.FRONTEND_URL];
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -46,9 +47,11 @@ const corsOptions: CorsOptions = {
     }
   },
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Permite cookies
+  allowedHeaders: ["Content-Type", "Authorization"], // Añade cualquier encabezado personalizado aquí
+  credentials: true,
   optionsSuccessStatus: 204,
 };
+
 
 //! NOTA
 //? !origin SE USA PARA PERMITIR SOLICITUDES DESDE ENTORNOS DE SON DOMINIO COMO PAR PRUEBAS POR EJEMPLO DESDE POSTMAN, SI SE QUIERE SER MAS ESTRICTO, SE PUEDE QUIRAR !origin PARA PRODUCCIÓN
