@@ -93,7 +93,6 @@ const router = Router();
 
 //* ROUTING
 
-
 /**
  * @swagger
  * /api/users:
@@ -333,7 +332,11 @@ router.post("/login", authValidationSchema, handleInputErros, login);
  *                               items:
  *                                    $ref: "#/components/schemas/User"
  */
-router.get("/", authenticate, getUsers);
+router.get(
+  "/",
+  //authenticate,
+  getUsers
+);
 
 /**
  * @swagger
@@ -444,10 +447,10 @@ router.get(
  *   put:
  *     summary: Update an existing user.
  *     description: Update the information of a specific user based on the provided ID.
- *     tags: 
+ *     tags:
  *       - Users
  *     security:
- *       - bearerAuth: [] 
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
