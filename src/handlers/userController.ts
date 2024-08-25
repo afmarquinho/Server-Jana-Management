@@ -196,6 +196,7 @@ export const login = async (req: Request, res: Response) => {
       data: payload,
       token,
     });
+    
   } catch (error) {
     console.error("Error en la autenticación:", error);
     res.status(500).json({ error: "Error en la autenticación" });
