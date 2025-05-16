@@ -227,7 +227,7 @@ const router = Router();
 
 router.post(
   "/",
-  authenticate,
+
   userValidationSchema,
   handleInputErros,
   createUser
