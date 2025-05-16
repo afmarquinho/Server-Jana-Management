@@ -23,7 +23,7 @@ export const connectDB = async () => {
     //   colors.bgGreen("Conexión establecida a la base de datos")
     // );
   } catch (error) {
-    //console.log(error);
+    console.log(error);
     console.log(colors.bgRed("Hubo un error al conectarse a la base de datos"));
   }
 };

@@ -5,21 +5,22 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const db = new Sequelize(process.env.DATABASE_URL!, {
-  models: [__dirname + "/../models/**/*"],
-  logging: false,
-});
-
 // const db = new Sequelize(process.env.DATABASE_URL!, {
-//   dialect: "postgres",
-//   //* LAS INSTRUCCIONES DE DIALECTOPTIONS, CIFRA LA BBD POR TEMAS DE SEGURIDAD, SIN ELLA TAMBIEN SE CREA LA BBDD PERO ES MEJOR CIFRARLAS.
-//   dialectOptions: {
-//     ssl: {
-//       rejectUnauthorized: false,
-//     },
-//   },
-//   models: [__dirname + "/../models/**/*.ts"], //*DE ESTA MANERA SE AÑADEN TODA LA CARPETA PARA QUE AÑADA LOS MODELOS AUTOMATICAMENTE
-//   //* models: [Report] //* DE ESTA MANERA TENGO QUE AÑADIR CADA MODELO MANUALMENTE
+//   models: [__dirname + "/../models/**/*"],
+//   logging: false,
 // });
+
+const db = new Sequelize(process.env.DATABASE_URL! as string, {
+  dialect: "postgres",
+
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Solo para entornos de desarrollo
+    },
+  },
+  logging: false, // si no quieres ver logs de SQL
+  models: [__dirname + "/../models/**/*.ts"],
+});
 
 export default db;
