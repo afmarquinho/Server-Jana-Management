@@ -1,36 +1,3 @@
-## Pasos para correr la aplicación en modo desarrollo.
-
-### Pasos para instalar el cliente de la aplicación.
-
-- Clonar el repositorio
-
-```bash
-git clone https://github.com/afmarquinho/Client-Jana-Management.git
-```
-
-- Cambiar el nombre de la carpeta clonada a "client".
-
-- Abrir la consola e ingresar a la carpeta "client".
-
-- Instalar las dependencias necesarias con el comando:
-
-```bash
-npm install
-```
-
-- Correr la aplicación en modo desarrollo:
-
-```bash
-npm run dev
-```
-
-- Desplegar la aplicación en el browser de su preferencia, en el puerto provisto.
-
-#### Despligue en modo desarrollo:
-
-- Netlify: https://jana-management.netlify.app/
-- Vercel: https://jana-project.vercel.app/
-
 # Jana Management System
 
 Jana es una aplicación PERN para la gestión de licitaciones. Este repositorio contiene el backend, que maneja las operaciones relacionadas con los datos.
