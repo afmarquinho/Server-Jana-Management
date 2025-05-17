@@ -12,7 +12,7 @@ import uploadRouter from "./router/uploadRouter";
 import consecutiveRouter from "./router/consecutiveRouter";
 import multer from "multer";
 import path from "path";
-import  fs  from "node:fs";
+import fs from "node:fs";
 
 // * CONNECT TO DATA BASE
 export const connectDB = async () => {
@@ -36,10 +36,15 @@ const upload = multer({
   dest: "uploads/",
 });
 
-
+//TODO: en producción actualizar los orignens permitidos de cross
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = [process.env.FRONTEND_URL];
+    // const allowedOrigins = [
+    //   process.env.FRONTEND_URL,
+    // ];
+    const allowedOrigins = process.env.FRONTEND_URL.split(",") || [];
+    console.log(allowedOrigins)
+
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -51,7 +56,6 @@ const corsOptions: CorsOptions = {
   credentials: true,
   optionsSuccessStatus: 204,
 };
-
 
 //! NOTA
 //? !origin SE USA PARA PERMITIR SOLICITUDES DESDE ENTORNOS DE SON DOMINIO COMO PAR PRUEBAS POR EJEMPLO DESDE POSTMAN, SI SE QUIERE SER MAS ESTRICTO, SE PUEDE QUIRAR !origin PARA PRODUCCIÓN
@@ -65,17 +69,14 @@ server.use(express.urlencoded({ extended: true }));
 //* ROUTE TO ACCESS TO IMAGE FROM DIRECTORY
 server.use("/api/uploads", express.static(path.join(__dirname, "../uploads")));
 
-server.use("/api/uploads", upload.single("profilePicture"), uploadRouter)
+server.use("/api/uploads", upload.single("profilePicture"), uploadRouter);
 
-
-
-server.use("/api/consecutives",consecutiveRouter );
+server.use("/api/consecutives", consecutiveRouter);
 server.use("/api/reports", reportRouter);
 server.use("/api/users", userRouter);
 server.use("/api/tenders", tenderRouter);
 
 //Docs
 server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 
 export default server;

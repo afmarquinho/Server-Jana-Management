@@ -1,16 +1,51 @@
-# Jana Backend
+## Pasos para correr la aplicación en modo desarrollo.
 
-Jana es una aplicación PERN para la gestión de licitaciones. Este repositorio contiene el backend, que maneja las operaciones relacionadas con los datos de las licitaciones.
+### Pasos para instalar el cliente de la aplicación.
+
+- Clonar el repositorio
+
+```bash
+git clone https://github.com/afmarquinho/Client-Jana-Management.git
+```
+
+- Cambiar el nombre de la carpeta clonada a "client".
+
+- Abrir la consola e ingresar a la carpeta "client".
+
+- Instalar las dependencias necesarias con el comando:
+
+```bash
+npm install
+```
+
+- Correr la aplicación en modo desarrollo:
+
+```bash
+npm run dev
+```
+
+- Desplegar la aplicación en el browser de su preferencia, en el puerto provisto.
+
+#### Despligue en modo desarrollo:
+
+- Netlify: https://jana-management.netlify.app/
+- Vercel: https://jana-project.vercel.app/
+
+# Jana Management System
+
+Jana es una aplicación PERN para la gestión de licitaciones. Este repositorio contiene el backend, que maneja las operaciones relacionadas con los datos.
 
 ## Descripción Técnica:
 
 ### Tecnologías Utilizadas:
 
 - **Backend:**
+
   - **Node.js:** Entorno de ejecución del lado del servidor para la construcción de aplicaciones escalables.
   - **Express:** Framework de aplicación web para Node.js, optimizado para construir APIs robustas y eficientes.
 
 - **Base de Datos:**
+
   - **PostgreSQL:** Sistema de gestión de bases de datos relacional y potente.
   - **Sequelize:** ORM para Node.js que facilita la interacción con bases de datos relacionales utilizando modelos.
 
@@ -31,31 +66,49 @@ Jana es una aplicación PERN para la gestión de licitaciones. Este repositorio 
 
 ## Instrucciones de Instalación y Configuración:
 
+### Requerimientos previos.
+
+- Tener instalado el entorno Node.js LTS. Si no lo tiene, puede visitar https://nodejs.org/en
+- Tener git instalado. Si no lo tiene, puede visitar https://git-scm.com/
+- Tener instalado el editor de código de su preferencia, VS CODE recomendado.
+- Para administrar la base de datos, preferiblemente un servicio contratado en la nube, si la tiene local, solo debe cambiar el string de conexión en la variable de entorno.
+
 1. **Clonar el Repositorio:**
    ```bash
    git clone https://github.com/afmarquinho/Server-Jana-Management.git
-   cd Server-Jana-Management
    ```
-2. **Instalar Dependencias:**
+2. **Cambiar el nombre de la carpeta clonada a "server".**
+
+3. **Abrir la consola e ingresar a la carpeta "server".**
+
+4. **Instalar Dependencias:**
    ```bash
    npm install
    ```
-3. **Configuración:**
-Crear un archivo .env en la raíz del proyecto con la configuración adecuada, incluyendo detalles de la base de datos y claves JWT.
+5. **Configuración:**
+   Copie en la raiz del proyecto el archivo ".env.template" y renombrelo a ".env", si ya tiene su proveedor de base de datos, cambie el string de conexión.
 
-4. **Ejecutar la Aplicación:**
+6. **Ejecutar la Aplicación:**
+
+```bash
+   npm run dev
+```
 
 ## Características Destacadas:
 
 ### Seguridad Avanzada:
+
 Implementación de JWT para garantizar una autenticación segura y autorización controlada.
 
 ### Gestión Eficiente de Archivos:
+
 Carga y almacenamiento de archivos, incluyendo documentos y perfiles de usuario.
 
 ### Documentación de API:
+
 Generación y visualización de la documentación de la API utilizando Swagger.
 
 ### Escalabilidad y Flexibilidad:
+
 Utilización de Sequelize y PostgreSQL para una base de datos robusta y escalable.
 Este repositorio contiene el código fuente completo del backend de Jana, una aplicación diseñada para la gestión de licitaciones. ¡Explora y potencia la gestión de tus procesos de licitación con nuestra solución avanzada!

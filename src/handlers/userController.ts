@@ -159,7 +159,6 @@ export const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-
 //* AUTHENTICATON
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -167,31 +166,22 @@ export const login = async (req: Request, res: Response) => {
   try {
     const user = await User.findOne({ where: { email } });
 
-
-    
     if (!user) {
       return res
-      .status(404)
-      .json({ error: "Acceso inválido, revise el email y contraseña" });
+        .status(404)
+        .json({ error: "Acceso inválido, revise el email y contraseña" });
     }
 
-    
     const isPasswordValid = await bcrypt.compare(
       password,
       user.dataValues.password
     );
-    
-    
-    
+
     if (!isPasswordValid) {
       return res
-      .status(401)
-      .json({ error: "Acceso inválido, revise el email y contraseña" });
+        .status(401)
+        .json({ error: "Acceso inválido, revise el email y contraseña" });
     }
-    
-    console.log("-------------------------------------")
-    console.log("pasó la validación")
-    console.log("-------------------------------------")
 
     const payload = {
       id: user.dataValues.id,
@@ -209,7 +199,6 @@ export const login = async (req: Request, res: Response) => {
       data: payload,
       token,
     });
-    
   } catch (error) {
     console.error("Error en la autenticación:", error);
     res.status(500).json({ error: "Error en la autenticación" });
