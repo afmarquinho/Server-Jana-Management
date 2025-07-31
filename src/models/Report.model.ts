@@ -7,9 +7,10 @@ import {
   HasMany,
   HasOne,
   ForeignKey,
+  BelongsTo,
 } from "sequelize-typescript";
 import Tender from "./Tender.model";
-
+import User from "./User.model";
 
 @Table({
   tableName: "reports",
@@ -75,14 +76,6 @@ class Report extends Model {
   })
   dueDate: Date;
 
-  @ForeignKey(() => Tender)
-  @Default(null)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: true,
-  })
-  tenderID: number | null;
-
   @Column({
     type: DataType.STRING(100),
     allowNull: false,
@@ -113,15 +106,22 @@ class Report extends Model {
     type: DataType.BOOLEAN,
   })
   processed: boolean;
- 
+
+  @ForeignKey(() => User)
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
     allowNull: false,
   })
-  createdBy: string;
+  userId: number;
 
   @HasOne(() => Tender)
   tender: Tender;
+
+  @BelongsTo(() => User)
+  user: User;
 }
+
+
+
 
 export default Report;

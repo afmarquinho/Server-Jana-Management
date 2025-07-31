@@ -57,6 +57,8 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
+
+
 //* UPDATE USER
 export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -183,6 +185,7 @@ export const login = async (req: Request, res: Response) => {
         .json({ error: "Acceso inválido, revise el email y contraseña" });
     }
 
+
     const payload = {
       id: user.dataValues.id,
       user: user.dataValues.user,
@@ -204,6 +207,8 @@ export const login = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error en la autenticación" });
   }
 };
+
+
 
 //* UPDATE STATUS -PATCH
 export const updateUserStatus = async (req: Request, res: Response) => {

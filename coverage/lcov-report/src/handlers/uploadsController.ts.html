@@ -204,8 +204,8 @@ import User from "../models/User.model";
 import fs from "node:fs";
 import path from "path";
 &nbsp;
-function <span class="fstat-no" title="function not covered" >saveImage(</span>file, userId: number, userName: string) {
-  const uniqueSuffix = <span class="cstat-no" title="statement not covered" >`${userId}-${userName}`;</span>
+function <span class="fstat-no" title="function not covered" >saveImage(</span>file, userNo: number, userName: string) {
+  const uniqueSuffix = <span class="cstat-no" title="statement not covered" >`${userNo}-${userName}`;</span>
   const fileExtension = <span class="cstat-no" title="statement not covered" >path.extname(file.originalname);</span>
   const newFileName = <span class="cstat-no" title="statement not covered" >`${uniqueSuffix}${fileExtension}`;</span>
   const newPath = <span class="cstat-no" title="statement not covered" >`uploads/${newFileName}`;</span>
@@ -229,7 +229,7 @@ export const uploadPicture = <span class="fstat-no" title="function not covered"
 &nbsp;
     const filePath = <span class="cstat-no" title="statement not covered" >saveImage(</span>
       req.file,
-      user.dataValues.userId,
+      user.dataValues.userNo,
       user.dataValues.name
     );
 <span class="cstat-no" title="statement not covered" >    await user.update({ profilePicture: filePath });</span>

@@ -3,8 +3,8 @@ import User from "../models/User.model";
 import fs from "node:fs";
 import path from "path";
 
-function saveImage(file, userId: number, userName: string) {
-  const uniqueSuffix = `${userId}-${userName}`;
+function saveImage(file, userNo: number, userName: string) {
+  const uniqueSuffix = `${userNo}-${userName}`;
   const fileExtension = path.extname(file.originalname);
   const newFileName = `${uniqueSuffix}${fileExtension}`;
   const newPath = `uploads/${newFileName}`;
@@ -28,7 +28,7 @@ export const uploadPicture = async (req: Request, res: Response) => {
 
     const filePath = saveImage(
       req.file,
-      user.dataValues.userId,
+      user.dataValues.userNo,
       user.dataValues.name
     );
     await user.update({ profilePicture: filePath });

@@ -10,11 +10,10 @@ import {
 } from "sequelize-typescript";
 import Report from "./Report.model";
 import Consecutive from "./Consecutive.model";
-
+import User from "./User.model";
 
 @Table({ tableName: "tenders" })
 class Tender extends Model {
-
   @Default(null)
   @Column({
     type: DataType.STRING(100),
@@ -223,6 +222,13 @@ class Tender extends Model {
   })
   reportId: number;
 
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  userId: number;
+
   @Default(0)
   @Column({
     type: DataType.INTEGER,
@@ -230,12 +236,15 @@ class Tender extends Model {
   })
   rev: number;
 
+  @BelongsTo(() => User)
+  user: User;
+
   @BelongsTo(() => Report)
   report: Report;
 
   @HasOne(() => Consecutive)
   consecutive: Consecutive;
-  
 }
+
 
 export default Tender;

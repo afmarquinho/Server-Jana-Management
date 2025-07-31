@@ -17,7 +17,7 @@ describe("POST /api/users", () => {
       name: "Juan",
       lastName: "Pérez",
       idType: "cc",
-      userId: 1234567890,
+      userNo: 1234567890,
       dateOfBirth: "1990-05-15",
       address: "123 Main Street, City, Country",
       phoneNumber: "+1234567890",
@@ -38,7 +38,7 @@ describe("POST /api/users", () => {
       name: "Juan",
       lastName: "Pérez",
       idType: "cc",
-      userId: 1234567890,
+      userNo: 1234567890,
       dateOfBirth: "2008-05-15",
       address: "123 Main Street, City, Country",
       phoneNumber: "+1234567890",
@@ -63,7 +63,7 @@ describe("POST /api/users", () => {
       name: "Juan",
       lastName: "Pérez",
       idType: "cc",
-      userId: 1234567890,
+      userNo: 1234567890,
       dateOfBirth: "1990-05-15",
       address: "123 Main Street, City, Country",
       phoneNumber: "+1234567890",
@@ -93,6 +93,7 @@ describe("POST /api/users/login", () => {
 
     expect(response.status).not.toBe(200);
   });
+  
   test("should display an error when receive a wrong email", async () => {
     const response = await request(server)
       .post("/api/users/login")
@@ -159,9 +160,9 @@ describe("GET /api/users", () => {
 
 describe("GET /api/users/:id", () => {
   test("should return a 404 response for a non-existing id", async () => {
-    const userId = 6;
+    const userNo = 6;
     const response = await request(server)
-      .get(`/api/users/${userId}`)
+      .get(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toBe(404);
     expect(response.body).toHaveProperty("error");
@@ -169,18 +170,18 @@ describe("GET /api/users/:id", () => {
   });
 
   test("should check a valid ID in the URL", async () => {
-    const userId = "not-valid-url";
+    const userNo = "not-valid-url";
     const response = await request(server)
-      .get(`/api/users/${userId}`)
+      .get(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("errors");
   });
 
   test("should get a single user by ID", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .get(`/api/users/${userId}`)
+      .get(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("data");
@@ -193,9 +194,9 @@ describe("GET /api/users/:id", () => {
 
 describe("PUT /api/users/:id", () => {
   test("should display validation error messages when updating an empty user", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .put(`/api/users/${userId}`)
+      .put(`/api/users/${userNo}`)
       .send({})
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toBe(400);
@@ -205,15 +206,15 @@ describe("PUT /api/users/:id", () => {
   });
 
   test("should update the current user chosen by ID", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .put(`/api/users/${userId}`)
+      .put(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({
         name: "John",
         lastName: "Pérez",
         idType: "cc",
-        userId: 1234567890,
+        userNo: 1234567890,
         dateOfBirth: "1990-05-15",
         address: "123 Main Street, City, Country",
         phoneNumber: "+1234567890",
@@ -233,11 +234,11 @@ describe("PUT /api/users/:id", () => {
 
 describe("PATCH /api/users/:id", () => {
   test("should display the validation error messages because a wrong token", async () => {
-    const userId = 1;
+    const userNo = 1;
     const worngToken =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlciI6Imp1YW5wZXJleiIsIm5hbWUiOiJKYW1lcyIsImxhc3ROYW1lIjoiUMOpcmV6IiwiYWN0aXZlIjp0cnVlLCJyb2xlIjoiZ2VyZW50ZSIsInByb2ZpbGVQaWN0dXJlIjpudWxsLCJpYXQiOjE3MjQ0MjA3MzMsImV4cCI6MTcyNDUwNzEzM30.9ikycbe8cQ6wexLEvu84N_WrGoaPcCh-QY6Z53NN5m";
     const response = await request(server)
-      .patch(`/api/users/${userId}`)
+      .patch(`/api/users/${userNo}`)
       .send({ password: "nuevaContrasena13@" })
       .set("Authorization", `Bearer ${worngToken}`);
     expect(response.status).toBe(500);
@@ -247,9 +248,9 @@ describe("PATCH /api/users/:id", () => {
   });
 
   test("should display an error due to empty password", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .patch(`/api/users/${userId}`)
+      .patch(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({});
     expect(response.status).toBe(400);
@@ -260,10 +261,10 @@ describe("PATCH /api/users/:id", () => {
     expect(response.status).not.toBe(200);
   });
 
-  test("should display an error due to a wrong userId", async () => {
-    const userId = 10;
+  test("should display an error due to a wrong userNo", async () => {
+    const userNo = 10;
     const response = await request(server)
-      .patch(`/api/users/${userId}`)
+      .patch(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({ password: "nuevaContrasena13@" });
     expect(response.status).toBe(404);
@@ -274,10 +275,10 @@ describe("PATCH /api/users/:id", () => {
     expect(response.status).not.toBe(200);
   });
 
-  test("should display an error due to an invalid userId", async () => {
-    const userId = "not-valid-id";
+  test("should display an error due to an invalid userNo", async () => {
+    const userNo = "not-valid-id";
     const response = await request(server)
-      .patch(`/api/users/${userId}`)
+      .patch(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({ password: "nuevaContrasena13@" });
     expect(response.status).toBe(400);
@@ -288,9 +289,9 @@ describe("PATCH /api/users/:id", () => {
   });
 
   test("should update the password", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .patch(`/api/users/${userId}`)
+      .patch(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({ password: "nuevaContrasena13@" });
     expect(response.status).toBe(200);
@@ -307,9 +308,9 @@ describe("PATCH /api/users/:id", () => {
 
 describe("PATCH /api/users/update/:id", () => {
   test("should display an error due to the lack of token", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .patch(`/api/users/update/${userId}`)
+      .patch(`/api/users/update/${userNo}`)
       .send({
         address: "Calle 155 #67-89, Cartagena, Bolívar, 080020",
         phoneNumber: "+57 100 6549873",
@@ -327,9 +328,9 @@ describe("PATCH /api/users/update/:id", () => {
   });
 
   test("should update user", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .patch(`/api/users/update/${userId}`)
+      .patch(`/api/users/update/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({
         address: "Calle 155 #67-89, Cartagena, Bolívar, 080020",
@@ -353,9 +354,9 @@ describe("PATCH /api/users/update/:id", () => {
 
 describe("PATCH /api/users/update-status/:id", () => {
   test("should display an error due to the lack of token", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .patch(`/api/users/update/${userId}`)
+      .patch(`/api/users/update/${userNo}`)
       .send({
         address: "Calle 155 #67-89, Cartagena, Bolívar, 080020",
         phoneNumber: "+57 100 6549873",
@@ -373,9 +374,9 @@ describe("PATCH /api/users/update-status/:id", () => {
   });
 
   test("should display an error due an empty property", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .patch(`/api/users/update-status/${userId}`)
+      .patch(`/api/users/update-status/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({
         active: "",
@@ -392,9 +393,9 @@ describe("PATCH /api/users/update-status/:id", () => {
   });
 
   test("should display an error due to a worng data", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .patch(`/api/users/update-status/${userId}`)
+      .patch(`/api/users/update-status/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({
         active: 10,
@@ -411,9 +412,9 @@ describe("PATCH /api/users/update-status/:id", () => {
   });
 
   test("should update the user status", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .patch(`/api/users/update-status/${userId}`)
+      .patch(`/api/users/update-status/${userNo}`)
       .set("Authorization", `Bearer ${token}`)
       .send({
         active: true,
@@ -456,9 +457,9 @@ describe("DELETE /api/users/:id", () => {
   //TODO: VALIDAR QUE EL ID SEA VÁLIDO
 
   test("should display an error for invalid ID", async () => {
-    const userId = 10;
+    const userNo = 10;
     const response = await request(server)
-      .delete(`/api/users/${userId}`)
+      .delete(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toBe(404);
     expect(response.body).toHaveProperty("error");
@@ -470,9 +471,9 @@ describe("DELETE /api/users/:id", () => {
   });
 
   test("should display an error for a string ID", async () => {
-    const userId = "invalid-id";
+    const userNo = "invalid-id";
     const response = await request(server)
-      .delete(`/api/users/${userId}`)
+      .delete(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toBe(500);
     expect(response.body).toHaveProperty("error");
@@ -484,9 +485,9 @@ describe("DELETE /api/users/:id", () => {
   });
 
   test("should delete a user found by ID", async () => {
-    const userId = 1;
+    const userNo = 1;
     const response = await request(server)
-      .delete(`/api/users/${userId}`)
+      .delete(`/api/users/${userNo}`)
       .set("Authorization", `Bearer ${token}`);
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("data");

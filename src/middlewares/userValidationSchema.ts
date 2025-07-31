@@ -26,7 +26,7 @@ export const userValidationSchema = [
     .notEmpty()
     .withMessage("Seleccione un tipo de identificación de la lista"),
 
-  body("userId")
+  body("userNo")
     .isNumeric()
     .withMessage("La identificación debe ser un número válido")
     .notEmpty()

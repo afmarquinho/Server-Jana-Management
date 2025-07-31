@@ -43,7 +43,7 @@ const router = Router();
  *            type: string
  *            description: cc, passport, ce
  *            example: cc
- *          userId:
+ *          userNo:
  *            type: integer
  *            description: User´s id
  *            example: 123456789
@@ -118,7 +118,7 @@ const router = Router();
  *                 type: string
  *                 enum: ["cc", "passport", "ce"]
  *                 example: "cc"
- *               userId:
+ *               userNo:
  *                 type: integer
  *                 example: 123456789
  *               dateOfBirth:
@@ -174,7 +174,7 @@ const router = Router();
  *                       type: string
  *                       enum: ["cc", "passport", "ce"]
  *                       example: "cc"
- *                     userId:
+ *                     userNo:
  *                       type: integer
  *                       example: 123456789
  *                     dateOfBirth:
@@ -379,7 +379,7 @@ router.get(
  *                       type: string
  *                       enum: ["cc", "passport", "ce"]
  *                       example: "cc"
- *                     userId:
+ *                     userNo:
  *                       type: integer
  *                       example: 12345678
  *                     dateOfBirth:
@@ -475,7 +475,7 @@ router.get(
  *               type: string
  *               enum: ["cc", "passport", "ce"]
  *               example: "cc"
- *             userId:
+ *             userNo:
  *               type: integer
  *               example: 12345678
  *             dateOfBirth:
@@ -534,7 +534,7 @@ router.get(
  *                       type: string
  *                       enum: ["cc", "passport", "ce"]
  *                       example: "cc"
- *                     userId:
+ *                     userNo:
  *                       type: integer
  *                       example: 12345678
  *                     dateOfBirth:
@@ -661,7 +661,7 @@ router.put(
  *                       type: string
  *                       enum: ["cc", "passport", "ce"]
  *                       example: "cc"
- *                     userId:
+ *                     userNo:
  *                       type: integer
  *                       example: 12345678
  *                     dateOfBirth:
@@ -768,7 +768,7 @@ router.patch(
  *               type: string
  *               enum: ["cc", "passport", "ce"]
  *               example: "cc"
- *             userId:
+ *             userNo:
  *               type: integer
  *               example: 12345678
  *             dateOfBirth:
@@ -830,7 +830,7 @@ router.patch(
  *                       type: string
  *                       enum: ["cc", "passport", "ce"]
  *                       example: "cc"
- *                     userId:
+ *                     userNo:
  *                       type: integer
  *                       example: 12345678
  *                     dateOfBirth:
@@ -1012,7 +1012,7 @@ router.patch(
  *                       type: string
  *                       enum: ["cc", "passport", "ce"]
  *                       example: "cc"
- *                     userId:
+ *                     userNo:
  *                       type: integer
  *                       example: 12345678
  *                     dateOfBirth:

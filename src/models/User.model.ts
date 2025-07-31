@@ -1,4 +1,13 @@
-import { Column, DataType, Default, Model, Table } from "sequelize-typescript";
+import {
+  Column,
+  DataType,
+  Default,
+  HasMany,
+  Model,
+  Table,
+} from "sequelize-typescript";
+import Report from "./Report.model";
+import Tender from "./Tender.model";
 
 @Table({
   tableName: "users",
@@ -27,7 +36,7 @@ class User extends Model<User> {
     allowNull: false,
     unique: true,
   })
-  userId: number;
+  userNo: number;
 
   @Column({
     type: DataType.DATE,
@@ -90,6 +99,12 @@ class User extends Model<User> {
     allowNull: false,
   })
   active: boolean;
+
+  @HasMany(() => Report)
+  reports: Report[];
+  
+  @HasMany(() => Tender)
+  tenders: Tender[];
 }
 
 export default User;

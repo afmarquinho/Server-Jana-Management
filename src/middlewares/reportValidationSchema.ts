@@ -7,30 +7,6 @@ export const reportValidationSchema = [
     .notEmpty()
     .withMessage("El nombre del proyecto no debe estar vacío"),
 
-  body("visitDate")
-    .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
-    .withMessage("Digite una fecha de visita válida")
-    .notEmpty()
-    .withMessage("La fecha de visita no puede estar vacía")
-    .custom((value) => {
-      const today: Date = new Date();
-      const visitDate: Date = new Date(value);
-      return visitDate <= today;
-    })
-    .withMessage("Digite una fecha de visita válida"),
-
-  body("dueDate")
-    .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
-    .withMessage("La fecha de entrega de entrega debe ser válida")
-    .notEmpty()
-    .withMessage("El campo 'fecha de entrega' no puede estar vacío")
-    .custom((value) => {
-      const today: Date = new Date();
-      const dueDate: Date = new Date(value);
-      return dueDate >= today;
-    })
-    .withMessage("La fecha de entrega debe ser válida"),
-
   body("customerName")
     .isString()
     .withMessage("Digite un nombre de cliente válido")
@@ -61,11 +37,45 @@ export const reportValidationSchema = [
     .isEmail()
     .withMessage("Ingrese un correo electrónico válido"),
 
+  body("priority")
+    .isIn(["low", "medium", "high"])
+    .withMessage("La prioridad debe ser Alta, Media o Baja"),
+
   body("description")
     .isString()
     .withMessage("Ingrese una texto válido para la descripción")
     .notEmpty()
     .withMessage("El campo descripción no puede estar vacío"),
+
+  body("visitDate")
+    .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
+    .withMessage("Digite una fecha de visita válida")
+    .notEmpty()
+    .withMessage("La fecha de visita no puede estar vacía")
+    .custom((value) => {
+      const today: Date = new Date();
+      const visitDate: Date = new Date(value);
+      return visitDate <= today;
+    })
+    .withMessage("Digite una fecha de visita válida"),
+
+  body("dueDate")
+    .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
+    .withMessage("La fecha de entrega de entrega debe ser válida")
+    .notEmpty()
+    .withMessage("El campo 'fecha de entrega' no puede estar vacío")
+    .custom((value) => {
+      const today: Date = new Date();
+      const dueDate: Date = new Date(value);
+      return dueDate >= today;
+    })
+    .withMessage("La fecha de entrega debe ser válida"),
+
+  body("ref")
+    .isString()
+    .withMessage("Ingrese una referencia válida")
+    .notEmpty()
+    .withMessage("El campo 'referencia' no puede estar vacío"),
 
   body("workforces")
     .isArray({ min: 1 })
@@ -103,30 +113,18 @@ export const reportValidationSchema = [
     .custom((value) => value > 0)
     .withMessage("La cantidad de material debe ser válida"),
 
-    body("materials.*.unit")
+  body("materials.*.unit")
     .isString()
     .withMessage("Digite una unidad del material válida")
     .notEmpty()
     .withMessage("La unidad de material no puede estar vacía"),
-  
-      body("priority")
-    .isIn(["low", "medium", "high"])
-    .withMessage("La prioridad debe ser Alta, Media o Baja"),
 
-    body("createdBy")
-    .isString()
-    .withMessage("El nombre del usuario debe ser correcto")
+  body("userId")
+    .isNumeric()
+    .withMessage("El id del usuario debe ser un número entero")
     .notEmpty()
-    .withMessage("El nombre del usuario no debe estar vacío"),
-    
-    body("ref")
-    .isString()
-    .withMessage("Ingrese una referencia válida")
-    .notEmpty()
-    .withMessage("El campo 'referencia' no puede estar vacío"),
-  ];
-
-
+    .withMessage("El id del usuario no debe estar vacío"),
+];
 
 //? NOTA EXPLICATORIA DE LA VALIDACIÓN DEL ARRAY DE OBJETOS.
 //* 'workforce.*.workforce':

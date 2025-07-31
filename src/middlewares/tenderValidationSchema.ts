@@ -7,12 +7,11 @@ export const tenderValidationSchema = [
     .notEmpty()
     .withMessage("El Id del reporte no puede estar vacío"),
 
-    body("createdBy")
+  body("userId")
     .isString()
-    .withMessage("createdBy no es válido")
+    .withMessage("El id del usuario debe ser un número entero")
     .notEmpty()
-    .withMessage("El campo 'createdBy' no puede estar vacío"),
-
+    .withMessage("El id del usuario no debe estar vacío"),
 
   //   body("visitDate")
   //   .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato

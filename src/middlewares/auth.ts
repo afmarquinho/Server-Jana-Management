@@ -34,7 +34,7 @@ export const authenticate = async (
             "createdAt",
             "updatedAt",
             "idType",
-            "userId",
+            "userNo",
             "dateOfBirth",
             "address",
             "phoneNumber",
