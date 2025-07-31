@@ -42,8 +42,7 @@ export const createTender = async (req: Request, res: Response) => {
 
     //* UPDATE TE REPORT STATUS TO PROCESSED "TRUE"
       await report.update({ processed: true }, { transaction });
-      
-      const report2 = await Report.findByPk(reportId);  
+
 
     tender.name = report.dataValues.name;
     tender.customerName = report.dataValues.customerName;

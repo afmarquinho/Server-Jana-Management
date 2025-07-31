@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Report from "../models/Report.model";
+import User from "../models/User.model";
 
 //? CREATE REPORTS
 export const createReport = async (req: Request, res: Response) => {
@@ -32,12 +33,19 @@ export const getReports = async (req: Request, res: Response) => {
 
 //? GET REPORT BY ID
 export const getReportbyId = async (req: Request, res: Response) => {
-  const reportId = req.params.id;
+  const reportId = Number(req.params.id);
 
   try {
     const report = await Report.findByPk(reportId, {
+      include: [
+        {
+          model: User,
+          attributes: ["name", "lastName"],
+        },
+      ],
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
+
     if (!report) {
       res
         .status(404)
@@ -45,22 +53,14 @@ export const getReportbyId = async (req: Request, res: Response) => {
       console.error("Reporte no encontrado por parámetro inválido");
       return;
     }
+    // Convertir el modelo Sequelize a un objeto plano
+    const plainReport = report.get({ plain: true });
+    const createdBy = `${plainReport.user.name} ${plainReport.user.lastName}`;
+     const { user, ...reportToShow } = plainReport;
 
-    // const formatDate = (date: Date): string => {
-    //   const d = new Date(date);
-    //   const year = d.getFullYear();
-    //   const month = (d.getMonth() + 1).toString().padStart(2, "0");
-    //   const day = d.getDate().toString().padStart(2, "0");
-    //   return `${year}-${month}-${day}`;
-    // };
+    reportToShow.createdBy = createdBy;
 
-    // const formattedReport = {
-    //   ...report.toJSON(),
-    //   visitDate: formatDate(report.visitDate),
-    //   dueDate: formatDate(report.dueDate),
-    // };
-
-    res.status(200).json({ data: report });
+    res.status(200).json({ data: reportToShow });
   } catch (error) {
     console.error("Error al obtener el reporte:", error.message);
     res.status(500).json({ error: "Error al obtener el reporte" });
