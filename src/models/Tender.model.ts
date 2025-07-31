@@ -19,7 +19,7 @@ class Tender extends Model {
     type: DataType.STRING(100),
     allowNull: true,
   })
-  code: string;
+  code: string | null;
 
   @Column({
     type: DataType.STRING(100),
@@ -56,13 +56,6 @@ class Tender extends Model {
     allowNull: false,
   })
   customerCity: string;
-
-  @Default(null)
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: true,
-  })
-  createdBy: string;
 
   @Default(null)
   @Column({

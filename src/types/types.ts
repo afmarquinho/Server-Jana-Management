@@ -64,12 +64,14 @@ export type Tendertype = {
   email: string;
   phoneNumber: string;
   customerCity: string;
+  // reviewedBy: string;
   reportId: number;
   ref: string;
   workforces: LaborType[];
   materials: SupplyType[];
   otherExpenses: OtherExpenses[];
   comments?: CommentsTypes[];
+  userId: number
 };
 
 export type UserTokenType = {

@@ -3,7 +3,7 @@ import { body } from "express-validator";
 export const dueDateValidationSchema = [
   body("dueDate")
     .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
-    .withMessage("La fecha de entrega de entrega debe ser válida")
+    .withMessage("fecha de entrega de entrega debe ser válida")
     .notEmpty()
     .withMessage("El campo 'fecha de entrega' no puede estar vacío")
     .custom((value) => {
@@ -11,5 +11,12 @@ export const dueDateValidationSchema = [
       const dueDate: Date = new Date(value);
       return dueDate >= today;
     })
-    .withMessage("La fecha de entrega debe ser válida"),
+    .withMessage("No se puede procesar un informe con fecha vencida"),
+
+     body("userId")
+    .isNumeric() 
+    .withMessage("El id del usuario debe ser un número válido")
+    .notEmpty()
+    .withMessage("El id del usuario no debe estar vacío")
+    
 ];

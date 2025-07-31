@@ -6,14 +6,14 @@ import db from "../config/db";
 import {
   MaterialReportType,
   Tendertype,
-
   WorkforceReportType,
 } from "../types/types";
 
 //? CREATE TENDER
 export const createTender = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const tenderId = Number(id);
+  const reportId = Number(id);
+  const {userId} = req.body;
 
   let tender: Tendertype = {
     name: "",
@@ -22,26 +22,28 @@ export const createTender = async (req: Request, res: Response) => {
     email: "",
     phoneNumber: "",
     customerCity: "",
-    reportId: tenderId,
+    reportId: reportId,
     ref: "",
     workforces: [],
     materials: [],
     otherExpenses: [],
+    userId,
   };
 
   const transaction: Transaction = await db.transaction();
 
   try {
-    const report = await Report.findByPk(tenderId);
+    const report = await Report.findByPk(reportId);
 
     if (!report) {
       console.error("Report no encontrado");
       return res.status(404).json({ error: "Reporte no encontrado" });
     }
-    if (!report.dataValues.processed) {
-      console.error("El reporte debe estar procesado");
-      return res.status(400).json({ error: "Reporte no procesado" });
-    }
+
+    //* UPDATE TE REPORT STATUS TO PROCESSED "TRUE"
+      await report.update({ processed: true }, { transaction });
+      
+      const report2 = await Report.findByPk(reportId);  
 
     tender.name = report.dataValues.name;
     tender.customerName = report.dataValues.customerName;
@@ -78,11 +80,8 @@ export const createTender = async (req: Request, res: Response) => {
     );
     const newTender = await Tender.create(tender, {
       transaction,
-    });
-    await report.update(
-      { tenderID: newTender.id },
-      { transaction }
-    );
+    });  
+
     await transaction.commit();
 
     const tenderRes = await Tender.findByPk(newTender.id, {
@@ -139,7 +138,7 @@ export const getTender = async (req: Request, res: Response) => {
 //? UPDATE TENDER BY ID
 export const updateTender = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const tenderData= req.body;
+  const tenderData = req.body;
   try {
     const tender = await Tender.findByPk(id);
     if (!tender) {

@@ -5,18 +5,18 @@ import {
   getReportbyId,
   getReports,
   updateReport,
-  updateReportProcessed,
+  // updateReportProcessed,
 } from "../handlers/reportController";
 import handleInputErros from "../middlewares/handleInputErros";
 import { reportValidationSchema } from "../middlewares/reportValidationSchema";
 import { param } from "express-validator";
-import { dueDateValidationSchema } from "../middlewares/dueDateValidationSchema";
+// import { dueDateValidationSchema } from "../middlewares/dueDateValidationSchema";
 import { authenticate } from "../middlewares/auth";
 
 const router = Router();
 
 // *ROUTING
-router.use(authenticate)
+router.use(authenticate);
 
 router.get("/", getReports);
 
@@ -30,16 +30,16 @@ router.get(
   getReportbyId
 );
 
-router.post("/",reportValidationSchema, handleInputErros, createReport);
+router.post("/", reportValidationSchema, handleInputErros, createReport);
 
 router.put("/:id", reportValidationSchema, handleInputErros, updateReport);
 
-router.patch(
-  "/:id",
-  dueDateValidationSchema,
-  handleInputErros,
-  updateReportProcessed
-);
+// router.patch(
+//   "/:id",
+//   dueDateValidationSchema,
+//   handleInputErros,
+//   updateReportProcessed
+// );
 
 router.delete("/:id", deleteReport);
 

@@ -95,28 +95,28 @@ export const updateReport = async (req: Request, res: Response) => {
 };
 
 //? PROCESSED REPORT
-export const updateReportProcessed = async (req: Request, res: Response) => {
-  const reportId = req.params.id;
+// export const updateReportProcessed = async (req: Request, res: Response) => {
+//   const reportId = req.params.id;
 
-  try {
-    const report = await Report.findByPk(reportId);
+//   try {
+//     const report = await Report.findByPk(reportId);
 
-    if (!report) {
-      res
-        .status(404)
-        .json({ error: "Reporte no encontrado por parámetro inválido" });
-      console.error("Reporte no encontrado por parámetro inválido");
-      return;
-    }
+//     if (!report) {
+//       res
+//         .status(404)
+//         .json({ error: "Reporte no encontrado por parámetro inválido" });
+//       console.error("Reporte no encontrado por parámetro inválido");
+//       return;
+//     }
 
-    const updatedReport = await report.update({ processed: true });
+//     const updatedReport = await report.update({ processed: true });
 
-    res.status(200).json({ data: updatedReport });
-  } catch (error) {
-    console.error("Error al actualizar el reporte:", error.message);
-    res.status(500).json({ error: "Error al actualizar el reporte" });
-  }
-};
+//     res.status(200).json({ data: updatedReport });
+//   } catch (error) {
+//     console.error("Error al actualizar el reporte:", error.message);
+//     res.status(500).json({ error: "Error al actualizar el reporte" });
+//   }
+// };
 
 //? DELETE REPORT
 export const deleteReport = async (req: Request, res: Response) => {

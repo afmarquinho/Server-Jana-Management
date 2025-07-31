@@ -7,14 +7,16 @@ import {
   deleteTender,
 } from "../handlers/tenderController";
 import handleInputErros from "../middlewares/handleInputErros";
-import { tenderValidationSchema } from "../middlewares/tenderValidationSchema";
+// import { tenderValidationSchema } from "../middlewares/tenderValidationSchema";
 import { authenticate } from "../middlewares/auth";
+import { dueDateValidationSchema } from "../middlewares/dueDateValidationSchema";
 
 const router = Router();
 
-router.use(authenticate)
+router.use(authenticate);
 
-router.post("/:id", createTender);
+router.post("/:id", dueDateValidationSchema, handleInputErros, createTender);
+
 router.put("/:id", updateTender);
 
 router.get("/", getTenders);
