@@ -57,8 +57,6 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
-
-
 //* UPDATE USER
 export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -184,17 +182,19 @@ export const login = async (req: Request, res: Response) => {
         .status(401)
         .json({ error: "Acceso inválido, revise el email y contraseña" });
     }
-
+    const plainUser = user.get({ plain: true });
 
     const payload = {
-      id: user.dataValues.id,
-      user: user.dataValues.user,
-      name: user.dataValues.name,
-      lastName: user.dataValues.lastName,
-      active: user.dataValues.active,
-      role: user.dataValues.role,
-      profilePicture: user.dataValues.profilePicture,
+      id: plainUser.id,
+      user: plainUser.user,
+      name: plainUser.name,
+      lastName: plainUser.lastName,
+      active: plainUser.active,
+      role: plainUser.role,
+      profilePicture: plainUser.profilePicture,
+      jobTitle: plainUser.jobTitle,
     };
+
 
     const token = generateJWT(payload);
 
@@ -207,8 +207,6 @@ export const login = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error en la autenticación" });
   }
 };
-
-
 
 //* UPDATE STATUS -PATCH
 export const updateUserStatus = async (req: Request, res: Response) => {

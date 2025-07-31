@@ -205,6 +205,8 @@ class Tender extends Model {
     {
       author: string;
       comment: string;
+      createdAt: string;
+      jobTitle: string;
     }
   ];
 
