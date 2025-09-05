@@ -64,7 +64,7 @@ server.use(cors(corsOptions));
 
 
 server.get("/", (req, res) => {
-  res.json({ message: "API funcionando 🚀" });
+  res.json({ message: "API funcionando" });
 });
 
 
