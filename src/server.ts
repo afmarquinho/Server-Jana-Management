@@ -62,6 +62,12 @@ const corsOptions: CorsOptions = {
 
 server.use(cors(corsOptions));
 
+
+server.get("/", (req, res) => {
+  res.json({ message: "API funcionando 🚀" });
+});
+
+
 //? READING DATA FROM FORM.
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
