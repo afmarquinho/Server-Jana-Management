@@ -28,6 +28,7 @@ export const createTender = async (req: Request, res: Response) => {
     materials: [],
     otherExpenses: [],
     userId,
+    date:null
   };
 
   const transaction: Transaction = await db.transaction();
@@ -43,15 +44,17 @@ export const createTender = async (req: Request, res: Response) => {
     //* UPDATE TE REPORT STATUS TO PROCESSED "TRUE"
       await report.update({ processed: true }, { transaction });
 
-
-    tender.name = report.dataValues.name;
-    tender.customerName = report.dataValues.customerName;
-    tender.contactName = report.dataValues.contactName;
-    tender.email = report.dataValues.email;
-    tender.phoneNumber = report.dataValues.phoneNumber;
-    tender.customerCity = report.dataValues.customerCity;
-    tender.ref = report.dataValues.ref;
-    tender.workforces = report.dataValues.workforces.map(
+     const  plainReport = report.get({ plain: true });
+    
+    tender.name = plainReport.name;
+    tender.customerName = plainReport.customerName;
+    tender.contactName = plainReport.contactName;
+    tender.email = plainReport.email;
+    tender.phoneNumber = plainReport.phoneNumber;
+    tender.customerCity = plainReport.customerCity;
+    tender.ref = plainReport.ref;
+    tender.date = plainReport.dueDate;
+    tender.workforces = plainReport.workforces.map(
       (item: WorkforceReportType) => ({
         role: item.role,
         workers: 0,
@@ -65,7 +68,7 @@ export const createTender = async (req: Request, res: Response) => {
       })
     );
 
-    tender.materials = report.dataValues.materials.map(
+    tender.materials = plainReport.materials.map(
       (item: MaterialReportType) => ({
         description: item.material,
         unit: item.unit,
@@ -190,9 +193,3 @@ export const deleteTender = async (req: Request, res: Response) => {
   }
 };
 
-//! NOTA: PARA CASOS EN QUE INTERACTUÉ CON VARIAS BASES DE DATOS DESDE UNA FUNCIÓIN
-//? Utilizamos "TRASACTION" para asegurar que todas las operaciones de creación
-//? (crear Report, Workforce, y Material) se realicen de manera atómica. Esto significa
-//? que si una de las operaciones falla, todas las operaciones se revertirán,
-//? asegurando la integridad de los datos.
-//? Si cae en el rollback eso deshace las operaciones de la bbdd hechas arriba.

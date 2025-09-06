@@ -64,6 +64,7 @@ export type Tendertype = {
   email: string;
   phoneNumber: string;
   customerCity: string;
+  date: string | null;
   // reviewedBy: string;
   reportId: number;
   ref: string;
