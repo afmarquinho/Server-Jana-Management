@@ -220,7 +220,7 @@ export const tenderValidationSchema =[
     .isDate() //? isISO8601 tambien se puede usar para validar de manera mas estricta este formato
     .withMessage("Digite una fecha válida")
     .notEmpty()
-    .withMessage("La fecha de vista no puede estar vacía")
+    .withMessage("La fecha de visIta no puede estar vacía")
     .custom(<span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {
       const today: Date = <span class="cstat-no" title="statement not covered" >new Date();</span>
       const visitDate: Date = <span class="cstat-no" title="statement not covered" >new Date(value);</span>
